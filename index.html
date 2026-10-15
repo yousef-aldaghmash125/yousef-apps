@@ -1,187 +1,226 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#103d2b">
-  <title>تطبيقات الأستاذ يوسف علي الدغمش</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#064b35">
+<title>تطبيقات الأستاذ يوسف علي الدغمش</title>
 
-    body {
-      margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #f4f7f3;
-      color: #173c2b;
-    }
+<style>
+:root {
+  --green: #064b35;
+  --deep-green: #022c20;
+  --gold: #d9ad45;
+  --cream: #fff9e8;
+}
 
-    header {
-      background: linear-gradient(135deg, #103d2b, #1c6243);
-      color: white;
-      text-align: center;
-      padding: 38px 16px 32px;
-      border-bottom: 4px solid #d7b45a;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .brand {
-      color: #f1d27b;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--deep-green);
+  background: linear-gradient(180deg, #e7d8a8, #fffdf4 45%, #e6d6a4);
+}
 
-    header h1 {
-      font-size: 25px;
-      margin: 8px 0 12px;
-    }
+header {
+  text-align: center;
+  padding: 24px 10px 28px;
+  color: var(--gold);
+  background: radial-gradient(circle at top, #116448, var(--deep-green));
+  border-bottom: 5px solid var(--gold);
+  box-shadow: 0 5px 18px #0003;
+}
 
-    header p {
-      margin: 0;
-      line-height: 1.9;
-      font-size: 14px;
-      color: #e4eee7;
-    }
+header h1 {
+  margin: 0;
+  font-size: clamp(21px, 5vw, 36px);
+  line-height: 1.6;
+  text-shadow: 1px 2px 3px #000;
+}
 
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 25px 16px 40px;
-    }
+header p {
+  margin: 8px 0 0;
+  color: white;
+  font-size: 13px;
+}
 
-    .section-title {
-      text-align: center;
-      font-size: 22px;
-      margin: 10px 0 8px;
-    }
+.intro {
+  text-align: center;
+  padding: 22px 8px 16px;
+}
 
-    .intro {
-      text-align: center;
-      color: #68796e;
-      font-size: 14px;
-      line-height: 1.8;
-      margin-bottom: 25px;
-    }
+.intro h2 {
+  color: var(--green);
+  font-size: clamp(17px, 4vw, 25px);
+  margin: 0 0 8px;
+}
 
-    .apps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-    }
+.intro p {
+  margin: 0;
+  font-size: 14px;
+}
 
-    .app-card {
-      background: white;
-      border-radius: 18px;
-      padding: 24px 18px;
-      text-align: center;
-      border: 1px solid #e0e9df;
-      box-shadow: 0 5px 18px #173c2b0d;
-    }
+.apps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 8px;
+  max-width: 850px;
+  margin: auto;
+  align-items: stretch;
+}
 
-    .app-icon {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 14px;
-      border-radius: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      background: #e7f1e8;
-      border: 2px solid #d7b45a;
-    }
+.app-card {
+  min-width: 0;
+  text-align: center;
+  background: var(--cream);
+  border: 3px solid var(--green);
+  border-radius: 17px;
+  padding: 10px 7px 12px;
+  box-shadow: 0 5px 12px #0002, inset 0 0 0 2px var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .app-card h3 {
-      margin: 8px 0;
-      font-size: 20px;
-    }
+.app-icon {
+  width: clamp(65px, 19vw, 125px);
+  height: clamp(65px, 19vw, 125px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px auto 10px;
+  background: linear-gradient(145deg, #14734c, #022d20);
+  border: 3px solid var(--gold);
+  border-radius: 22px;
+  box-shadow: 0 4px 10px #0003, inset 0 0 0 2px #ffffff30;
+  font-size: clamp(34px, 10vw, 65px);
+}
 
-    .app-card p {
-      color: #65766b;
-      font-size: 14px;
-      line-height: 1.9;
-      min-height: 52px;
-    }
+.app-card h3 {
+  font-size: clamp(14px, 3.6vw, 23px);
+  line-height: 1.6;
+  margin: 2px 0 8px;
+  color: var(--green);
+}
 
-    .app-button {
-      display: inline-block;
-      background: #17613f;
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 10px;
-      font-size: 14px;
-      margin-top: 8px;
-    }
+.app-card p {
+  font-size: clamp(11px, 2.8vw, 15px);
+  line-height: 1.9;
+  margin: 0 0 15px;
+  flex-grow: 1;
+}
 
-    .app-button:active {
-      transform: scale(.97);
-    }
+.app-button {
+  width: 100%;
+  display: block;
+  padding: 11px 4px;
+  border: 2px solid var(--gold);
+  border-radius: 30px;
+  background: linear-gradient(180deg, #11764e, #03432e);
+  color: white;
+  font-size: clamp(11px, 2.8vw, 15px);
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 3px 5px #0002;
+  transition: transform .15s;
+}
 
-    .note {
-      background: #fff9e8;
-      border-right: 4px solid #d7b45a;
-      padding: 14px;
-      border-radius: 8px;
-      margin-top: 25px;
-      color: #66552a;
-      font-size: 13px;
-      line-height: 1.9;
-    }
+.app-button:active {
+  transform: scale(.96);
+}
 
-    footer {
-      text-align: center;
-      padding: 22px 12px;
-      background: #103d2b;
-      color: #f1d27b;
-      font-size: 13px;
-      line-height: 2;
-    }
+.file-size {
+  font-size: 10px;
+  margin-top: 8px;
+  color: #486456;
+}
 
-    footer span {
-      display: block;
-      color: #e0e9e2;
-      font-size: 11px;
-    }
-  </style>
+footer {
+  margin-top: 25px;
+  padding: 23px 10px;
+  text-align: center;
+  color: var(--gold);
+  background: linear-gradient(145deg, #07553b, #022c20);
+  border-top: 4px solid var(--gold);
+  line-height: 2;
+  font-size: 13px;
+}
+
+footer strong {
+  font-size: 17px;
+}
+
+@media (min-width: 600px) {
+  .apps {
+    gap: 22px;
+    padding: 16px;
+  }
+
+  .app-card {
+    padding: 20px 16px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="brand">✦ بوابتك إلى التطبيقات الرقمية ✦</div>
-    <h1>تطبيقات الأستاذ يوسف علي الدغمش</h1>
-    <p>مرحبًا بكم في موقع تطبيقاتنا<br>نسعى إلى تقديم برامج مفيدة وسهلة الاستخدام</p>
-  </header>
 
-  <main>
-    <h2 class="section-title">تطبيقاتنا</h2>
-    <p class="intro">اختر التطبيق الذي تريد استخدامه</p>
+<header>
+  <h1>تطبيقات الأستاذ<br>يوسف علي الدغمش</h1>
+  <p>موقع يضم تطبيقات وبرامج قام بتصميمها وتطويرها</p>
+</header>
 
-    <section class="apps" id="apps-list">
+<section class="intro">
+  <h2>تطبيقات نافعة لخدمة مجتمعنا</h2>
+  <p>أعمال بسيطة ... وأجر عظيم</p>
+</section>
 
-      <article class="app-card">
-        <div class="app-icon">🌙</div>
-        <h3>زاد الخير</h3>
-        <p>تطبيق للأذكار والأدعية والقرآن الكريم والأعمال الصالحة.</p>
-        <a class="app-button" href="zadalkhyr.comy-5.apk" download>تحميل تطبيق زاد الخير</a>
-      </article>
+<main class="apps">
 
-      <article class="app-card">
-        <div class="app-icon">⛽</div>
-        <h3>حاسبة الوقود الذكية</h3>
-        <p>أداة سهلة لحساب كميات الوقود وقيمتها المالية ومراجعة العمليات.</p>
-        <a class="app-button" href="hasba.c-1.apk" download>تحميل حاسبة الوقود الذكية</a>
-      </article>
+  <article class="app-card">
+    <div class="app-icon" aria-hidden="true">🕌</div>
+    <h3>زاد الخير</h3>
+    <p>
+      تطبيق إسلامي يضم الأذكار والأدعية والقرآن الكريم
+      ومواقيت الصلاة والمسبحة الإلكترونية،
+      مع إمكانية الاستفادة من ميزاته دون إنترنت.
+    </p>
+    <a class="app-button"
+       href="zadalkhyr.comy-5.apk"
+       download>
+       ⬇ تحميل زاد الخير
+    </a>
+    <div class="file-size">تطبيق إسلامي متنوع</div>
+  </article>
 
-    </section>
+  <article class="app-card">
+    <div class="app-icon" aria-hidden="true">⛽</div>
+    <h3>حاسبة الوقود الذكية</h3>
+    <p>
+      حاسبة الوقود تقوم بجمع مادتين سوية،
+      مما يسهل عمل العامل في المحطة.
+    </p>
+    <a class="app-button"
+       href="hasba.c-1.apk"
+       download>
+       ⬇ تحميل حاسبة الوقود
+    </a>
+    <div class="file-size">حاسبة عملية للوقود</div>
+  </article>
 
-    <div class="note">
-      <strong>ماذا بعد؟</strong><br>
-      هذا الموقع قابل للتطوير، ويمكننا إضافة تطبيقات جديدة إليه مستقبلًا مع الحفاظ على التصميم العام.
-    </div>
-  </main>
+</main>
 
-  <footer>
-    تطبيقات الأستاذ يوسف علي الدغمش
-    <span>نسأل الله أن يجعل فيما نقدمه النفع والخير للجميع</span>
-  </footer>
+<footer>
+  قام بتصميم هذا الموقع أخوكم في الله
+  <br>
+  <strong>يوسف علي الدغمش</strong>
+  <br>
+  لا تنسونا من صالح دعائكم
+</footer>
+
 </body>
 </html>
