@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123d2a">
+<title>وقود متوفر | محطة يوسف دغمش</title>
+<style>
+:root{--green:#123d2a;--green2:#1c6846;--gold:#e8bd55;--bg:#f3f6f3;--ink:#1c2a22;--muted:#6a786f;--red:#b83232}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--green),var(--green2));color:white;padding:25px 16px 22px;text-align:center;border-bottom:4px solid var(--gold)}
+header h1{margin:0 0 8px;font-size:27px}header p{margin:5px 0;color:#f6e9c3}header .phone{font-weight:bold;direction:ltr;display:inline-block}
+main{max-width:850px;margin:20px auto;padding:0 12px 35px}.panel{background:#fff;border-radius:16px;padding:17px;margin:14px 0;box-shadow:0 4px 15px #173d2a12;border:1px solid #e4ebe5}
+h2{font-size:20px;margin:0 0 14px;color:var(--green)}.station{border:1px solid #dfe8e1;border-radius:13px;padding:15px;margin:12px 0;background:#fff}
+.station-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.station h3{margin:0;font-size:20px;color:var(--green)}
+.location{color:var(--muted);font-size:13px;margin-top:6px}.fuels{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.fuel{border-radius:10px;padding:13px;text-align:center;background:#f4f7f4;border:1px solid #e3e9e3}.fuel strong{display:block;margin-bottom:9px;font-size:16px}
+.badge{display:inline-block;border-radius:20px;padding:7px 12px;font-size:14px;font-weight:bold}.yes{background:#d9f4e3;color:#17643b}.no{background:#fde2e2;color:#9e2525}.unknown{background:#fff0c9;color:#795b08}
+small,.muted{color:var(--muted)}.updated{font-size:12px;margin-top:12px;color:var(--muted)}
+button{border:0;border-radius:9px;padding:10px 14px;font-family:inherit;font-weight:bold;cursor:pointer;background:var(--green2);color:#fff}button.secondary{background:#e8eee9;color:var(--green)}button.danger{background:var(--red)}button.gold{background:#d5a733;color:#17271d}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ccd8ce;border-radius:9px;font:inherit;background:#fff;margin:5px 0 11px}label{font-size:14px;font-weight:bold;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.hidden{display:none!important}.notice{padding:11px;border-radius:9px;background:#fff4d5;color:#654d0c;margin:10px 0;font-size:13px}.error{color:#a11}.empty{text-align:center;padding:25px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:15px;font-size:13px}
+.settings-fab{position:fixed;bottom:18px;left:16px;z-index:1000;background:#d5a733;color:#17271d;box-shadow:0 4px 14px #0003;border:2px solid #fff;padding:13px 17px;border-radius:28px;font-size:15px}
+.settings-fab:active{transform:scale(.96)}
+#settingsHint{margin-top:8px;font-size:13px;line-height:1.7}
+hr{border:0;border-top:1px solid #e3e9e3;margin:18px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>⛽ وقود متوفر</h1>
+  <p>محطة يوسف دغمش — سكا</p>
+  <p>لمعرفة توفر البنزين والمازوت وآخر وقت للتحديث</p>
+  <p class="phone">0994381171</p>
+  <button type="button" class="gold" id="settingsTopBtn" style="margin-top:10px">⚙️ إعدادات التطبيق</button>
+</header>
+<main>
+  <section class="panel">
+    <div class="station-head"><h2>حالة توفر الوقود</h2><button class="secondary" id="refreshBtn" type="button">تحديث العرض</button></div>
+    <p class="muted">تتحدث الحالات تلقائياً عند قيام الإدارة بتغييرها.</p>
+    <div id="publicStations"><div class="empty">جارٍ تحميل المحطات...</div></div>
+    <div id="publicError" class="notice hidden"></div>
+  </section>
+
+  <section class="panel">
+    <div class="station-head"><h2>ملاحظات عامة</h2></div>
+    <div id="publicNotes" class="muted">لا توجد ملاحظات حالياً.</div>
+  </section>
+
+  <section class="panel" id="loginPanel">
+    <h2>دخول الإدارة</h2>
+    <p class="muted">هذه المنطقة مخصصة لإدارة المحطات وحالة الوقود.</p>
+    <form id="loginForm">
+      <label for="email">البريد الإلكتروني</label><input id="email" type="email" autocomplete="username" required>
+      <label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="current-password" required>
+      <button type="submit">تسجيل الدخول</button>
+      <div id="loginMessage" class="muted" style="margin-top:10px" role="status"></div>
+    </form>
+  </section>
+
+  <section class="panel hidden" id="adminPanel">
+    <div class="station-head"><h2>لوحة الإدارة</h2><button class="danger" id="logoutBtn" type="button">تسجيل الخروج</button></div>
+    <div class="notice">تأكد من ضبط قواعد Firebase بحيث يُسمح لحساب يوسف الإداري وحده بالكتابة، لأن حماية الصلاحيات يجب أن تكون في Firebase أيضاً وليس في شكل الصفحة فقط.</div>
+    <h3>إضافة محطة أو تعديلها</h3>
+    <form id="stationForm">
+      <input type="hidden" id="stationId">
+      <div class="grid">
+        <div><label for="stationName">اسم المحطة</label><input id="stationName" required placeholder="مثال: محطة يوسف دغمش"></div>
+        <div><label for="stationArea">المحافظة / المنطقة</label><input id="stationArea" placeholder="مثال: سكا"></div>
+      </div>
+      <div class="grid">
+        <div><label for="petrolStatus">البنزين</label><select id="petrolStatus"><option value="unknown">لم يتم التحديث</option><option value="available">متوفر</option><option value="unavailable">غير متوفر</option></select></div>
+        <div><label for="dieselStatus">المازوت</label><select id="dieselStatus"><option value="unknown">لم يتم التحديث</option><option value="available">متوفر</option><option value="unavailable">غير متوفر</option></select></div>
+      </div>
+      <label for="stationNote">ملاحظة خاصة بالمحطة (اختياري)</label><textarea id="stationNote" rows="2" placeholder="مثال: التوفر محدود"></textarea>
+      <div class="row"><button type="submit">حفظ المحطة</button><button class="secondary" type="button" id="clearFormBtn">تفريغ الحقول</button></div>
+      <div id="stationMessage" class="muted" role="status" style="margin-top:10px"></div>
+    </form>
+    <hr>
+    <h3>المحطات المسجلة</h3><div id="adminStations"></div>
+    <hr>
+    <h3>ملاحظة عامة للزوار</h3>
+    <label for="generalNote">الملاحظة</label><textarea id="generalNote" rows="3" placeholder="اكتب الملاحظة التي ستظهر للزوار"></textarea>
+    <button id="saveNoteBtn" type="button">حفظ الملاحظة</button>
+    <div id="noteMessage" class="muted" role="status" style="margin-top:8px"></div>
+  </section>
+</main>
+<footer>وقود متوفر • المعلومات بحسب آخر تحديث مسجل</footer>
+<button type="button" class="settings-fab" id="settingsFab">⚙️ الإعدادات</button>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDeCqa42tS0deh6gkU-Cldrm9HZsL_ah9U",
+  authDomain: "waqood-available.firebaseapp.com",
+  databaseURL: "https://waqood-available-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "waqood-available",
+  storageBucket: "waqood-available.firebasestorage.app",
+  messagingSenderId: "293841628354",
+  appId: "1:293841628354:web:3bc2fad15df10b481a5f5b"
+};
+const $ = id => document.getElementById(id);
+// Show a useful message instead of silently stopping if the Firebase libraries did not load.
+if (!window.firebase || !firebase.initializeApp || !firebase.auth || !firebase.database) {
+  const showLogin = () => {
+    $('loginPanel').classList.remove('hidden');
+    $('loginPanel').scrollIntoView({behavior:'smooth',block:'start'});
+    $('loginMessage').textContent = 'تعذر تشغيل تسجيل الدخول لأن مكتبات Firebase لم تُحمّل. افتح الملف في Google Chrome مع اتصال بالإنترنت، ثم أعد تحميل الصفحة.';
+  };
+  $('settingsTopBtn').addEventListener('click', showLogin);
+  $('settingsFab').addEventListener('click', showLogin);
+  $('loginForm').addEventListener('submit', e => { e.preventDefault(); showLogin(); });
+  throw new Error('Firebase SDK failed to load');
+}
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.database();
+let stationCache = {};
+
+function safeText(value){return String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function statusInfo(value){
+  if(value==='available') return ['متوفر','yes'];
+  if(value==='unavailable') return ['غير متوفر','no'];
+  return ['لم يتم التحديث','unknown'];
+}
+function timeText(value){if(!value)return 'لم يُسجل وقت التحديث';try{return 'آخر تحديث: '+new Date(value).toLocaleString('ar-SY');}catch(e){return 'آخر تحديث مسجل';}}
+function stationCard(id,s,admin=false){
+  const p=statusInfo(s.petrolStatus), d=statusInfo(s.dieselStatus);
+  return `<article class="station">
+    <div class="station-head"><div><h3>${safeText(s.name||'محطة بدون اسم')}</h3><div class="location">📍 ${safeText(s.area||'لم تحدد المنطقة')}</div></div>
+    ${admin?`<div class="row" style="flex:0 0 auto"><button class="secondary" onclick="editStation('${id}')">تعديل</button><button class="danger" onclick="deleteStation('${id}')">حذف</button></div>`:''}
+    </div>
+    <div class="fuels">
+      <div class="fuel"><strong>بنزين</strong><span class="badge ${p[1]}">${p[0]}</span><div class="updated">${timeText(s.petrolUpdatedAt)}</div></div>
+      <div class="fuel"><strong>مازوت</strong><span class="badge ${d[1]}">${d[0]}</span><div class="updated">${timeText(s.dieselUpdatedAt)}</div></div>
+    </div>
+    ${s.note?`<p class="notice" style="margin-bottom:0">${safeText(s.note)}</p>`:''}
+    ${s.updatedAt?`<div class="updated">آخر تعديل للمحطة: ${timeText(s.updatedAt)}</div>`:''}
+  </article>`;
+}
+function renderStations(data){
+  stationCache=data||{};
+  const entries=Object.entries(stationCache).sort((a,b)=>(a[1].name||'').localeCompare(b[1].name||'','ar'));
+  $('publicStations').innerHTML=entries.length?entries.map(([id,s])=>stationCard(id,s)).join(''):'<div class="empty">لا توجد محطات مضافة حتى الآن.</div>';
+  if(auth.currentUser) $('adminStations').innerHTML=entries.length?entries.map(([id,s])=>stationCard(id,s,true)).join(''):'<div class="empty">لا توجد محطات.</div>';
+}
+db.ref('stations').on('value',snap=>renderStations(snap.val()||{}),err=>{
+  $('publicError').textContent='تعذر تحميل المحطات. تحقق من اتصال الإنترنت وقواعد القراءة في Firebase.';
+  $('publicError').classList.remove('hidden');
+});
+db.ref('generalNote').on('value',snap=>{
+  const note=snap.val()||'';
+  $('publicNotes').textContent=note||'لا توجد ملاحظات حالياً.';
+  if($('generalNote') && !document.activeElement.isSameNode($('generalNote'))) $('generalNote').value=note;
+});
+$('refreshBtn').addEventListener('click',()=>db.ref('stations').once('value').then(s=>renderStations(s.val()||{})).catch(()=>{}));
+function openSettings(){
+  const target=auth.currentUser ? $('adminPanel') : $('loginPanel');
+  target.classList.remove('hidden');
+  target.scrollIntoView({behavior:'smooth',block:'start'});
+  if(!auth.currentUser){setTimeout(()=>$('email').focus({preventScroll:true}),350);}
+}
+$('settingsTopBtn').addEventListener('click',openSettings);
+$('settingsFab').addEventListener('click',openSettings);
+$('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();$('loginMessage').textContent='جارٍ تسجيل الدخول...';
+  try{await auth.signInWithEmailAndPassword($('email').value.trim(),$('password').value);$('loginMessage').textContent='تم تسجيل الدخول.';}
+  catch(err){console.error('Firebase sign-in error:',err); const messages={ 'auth/invalid-email':'صيغة البريد الإلكتروني غير صحيحة.','auth/user-not-found':'هذا البريد غير مسجل في Firebase Authentication.','auth/wrong-password':'كلمة المرور غير صحيحة.','auth/invalid-credential':'البريد أو كلمة المرور غير صحيحين.','auth/too-many-requests':'محاولات كثيرة؛ انتظر قليلاً ثم أعد المحاولة.','auth/network-request-failed':'تعذر الاتصال بالإنترنت.','auth/operation-not-allowed':'يجب تفعيل Email/Password في Firebase Authentication.'}; $('loginMessage').textContent=messages[err.code]||('تعذر تسجيل الدخول ('+(err.code||'خطأ غير معروف')+'). تحقق من إعدادات Firebase والإنترنت.');}
+});
+auth.onAuthStateChanged(user=>{
+  $('adminPanel').classList.toggle('hidden',!user);
+  $('loginPanel').classList.toggle('hidden',!!user);
+  if(user){$('loginMessage').textContent='';$('generalNote').value='';db.ref('generalNote').once('value').then(s=>$('generalNote').value=s.val()||'');renderStations(stationCache);}
+});
+$('logoutBtn').addEventListener('click',()=>auth.signOut());
+function clearStationForm(){
+  $('stationId').value='';$('stationName').value='';$('stationArea').value='';
+  $('petrolStatus').value='unknown';$('dieselStatus').value='unknown';$('stationNote').value='';
+  $('stationMessage').textContent='';
+}
+$('clearFormBtn').addEventListener('click',clearStationForm);
+window.editStation=id=>{
+  const s=stationCache[id];if(!s)return;
+  $('stationId').value=id;$('stationName').value=s.name||'';$('stationArea').value=s.area||'';
+  $('petrolStatus').value=s.petrolStatus||'unknown';$('dieselStatus').value=s.dieselStatus||'unknown';$('stationNote').value=s.note||'';
+  $('stationMessage').textContent='يمكنك تعديل البيانات ثم الضغط على حفظ المحطة.';
+  $('stationForm').scrollIntoView({behavior:'smooth',block:'start'});
+};
+window.deleteStation=async id=>{
+  const s=stationCache[id];if(!s||!confirm('هل تريد حذف محطة "'+(s.name||'')+'"؟'))return;
+  try{await db.ref('stations/'+id).remove();$('stationMessage').textContent='تم حذف المحطة.';}
+  catch(e){$('stationMessage').textContent='فشل الحذف؛ تحقق من صلاحيات الكتابة في Firebase.';}
+};
+$('stationForm').addEventListener('submit',async e=>{
+  e.preventDefault();if(!auth.currentUser){$('stationMessage').textContent='سجّل الدخول أولاً.';return;}
+  const id=$('stationId').value||db.ref('stations').push().key;
+  const old=stationCache[id]||{}, now=Date.now();
+  const petrolStatus=$('petrolStatus').value,dieselStatus=$('dieselStatus').value;
+  const item={
+    name:$('stationName').value.trim(),area:$('stationArea').value.trim(),
+    petrolStatus,dieselStatus,note:$('stationNote').value.trim(),
+    petrolUpdatedAt:old.petrolStatus===petrolStatus?(old.petrolUpdatedAt||now):now,
+    dieselUpdatedAt:old.dieselStatus===dieselStatus?(old.dieselUpdatedAt||now):now,
+    updatedAt:now,updatedBy:auth.currentUser.uid,
+    createdAt:old.createdAt||now
+  };
+  try{await db.ref('stations/'+id).set(item);$('stationMessage').textContent='تم حفظ بيانات المحطة بنجاح.';clearStationForm();}
+  catch(err){$('stationMessage').textContent='لم يتم الحفظ. تأكد من تسجيل الدخول ومن قواعد الكتابة في Firebase Realtime Database.';}
+});
+$('saveNoteBtn').addEventListener('click',async()=>{
+  if(!auth.currentUser){$('noteMessage').textContent='سجّل الدخول أولاً.';return;}
+  try{await db.ref('generalNote').set($('generalNote').value.trim());$('noteMessage').textContent='تم حفظ الملاحظة.';}
+  catch(e){$('noteMessage').textContent='تعذر الحفظ؛ تحقق من صلاحيات Firebase.';}
+});
+</script>
+</body>
+</html>
