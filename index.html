@@ -2,399 +2,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#063d2b"><title>تطبيقات الأستاذ يوسف علي الدغمش</title>
-<meta name="description" content="موقع تطبيقات الأستاذ يوسف علي الدغمش، يضم زاد الخير وحاسبة الوقود الذكية وتطبيق ديوني."><style>
-:root {
-  --green: #06452f;
-  --dark: #02271c;
-  --green2: #08704a;
-  --gold: #e7bd58;
-  --gold2: #b88625;
-  --cream: #fff9e9;
-  --ink: #163d2c;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  color: var(--ink);
-  background: #f7f0d9;
-}
-
-/* رأس الموقع */
-.hero {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  padding: 28px 12px 30px;
-  color: white;
-  background:
-    radial-gradient(ellipse at 50% 0%, #16724e 0%, transparent 58%),
-    linear-gradient(145deg, #07563b, #02271c 75%);
-  border-bottom: 5px solid var(--gold);
-  box-shadow: 0 7px 18px #0003;
-}
-
-.hero::before,
-.hero::after {
-  content: "✦";
-  position: absolute;
-  color: var(--gold);
-  font-size: 48px;
-  opacity: .45;
-  top: 15px;
-}
-
-.hero::before {
-  right: 12px;
-}
-
-.hero::after {
-  left: 12px;
-}
-
-.ornament {
-  color: var(--gold);
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.hero h1 {
-  color: #ffdc79;
-  font-size: clamp(23px, 5.5vw, 39px);
-  line-height: 1.55;
-  margin: 0;
-  text-shadow: 0 3px 5px #0008;
-}
-
-.hero .subtitle {
-  font-size: clamp(12px, 3vw, 16px);
-  line-height: 1.9;
-  margin: 8px 0 0;
-}
-
-.gold-line {
-  width: 65%;
-  max-width: 310px;
-  height: 2px;
-  margin: 17px auto 0;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--gold),
-    #fff0ae,
-    var(--gold),
-    transparent
-  );
-  position: relative;
-}
-
-.gold-line::after {
-  content: "❖";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--green);
-  color: var(--gold);
-  padding: 0 10px;
-  font-size: 23px;
-}
-
-/* مقدمة الموقع */
-.intro {
-  text-align: center;
-  padding: 23px 8px 18px;
-  background: radial-gradient(ellipse at top, #fffdf4, transparent 85%);
-}
-
-.intro h2 {
-  color: var(--green);
-  font-size: clamp(17px, 4vw, 25px);
-  line-height: 1.6;
-  margin: 0 0 7px;
-}
-
-.intro p {
-  font-size: clamp(13px, 3.2vw, 17px);
-  margin: 0;
-  color: #51452b;
-}
-
-/* بطاقات التطبيقات */
-.apps {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  align-items: stretch;
-}
-
-.app-card {
-  min-width: 0;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 10px 7px 12px;
-  border: 3px solid var(--green);
-  border-radius: 19px;
-  background: linear-gradient(145deg, #fffdf3, #fff7df);
-  box-shadow:
-    0 6px 13px #183c2925,
-    inset 0 0 0 2px var(--gold);
-}
-
-.app-card::before {
-  content: "❖";
-  color: var(--gold2);
-  font-size: 17px;
-  position: absolute;
-  top: 5px;
-  right: 7px;
-}
-
-.app-card::after {
-  content: "❖";
-  color: var(--gold2);
-  font-size: 17px;
-  position: absolute;
-  top: 5px;
-  left: 7px;
-}
-
-/* أيقونات التطبيقات */
-.app-icon {
-  width: clamp(66px, 19vw, 132px);
-  height: clamp(66px, 19vw, 132px);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 7px auto 10px;
-  border: 4px solid var(--gold);
-  border-radius: 25px;
-  background:
-    radial-gradient(circle at 35% 20%, #188957, transparent 50%),
-    linear-gradient(145deg, #07563b, #01291c);
-  box-shadow:
-    0 5px 12px #0003,
-    inset 0 0 0 2px #ffffff35;
-  font-size: clamp(36px, 10vw, 73px);
-}
-
-.app-card h3 {
-  color: var(--green);
-  font-size: clamp(14px, 3.5vw, 24px);
-  line-height: 1.65;
-  margin: 2px 0 7px;
-}
-
-.app-card p {
-  color: #293d30;
-  font-size: clamp(11px, 2.7vw, 16px);
-  line-height: 1.95;
-  margin: 0 0 14px;
-  width: 100%;
-  flex-grow: 1;
-}
-
-/* أزرار التحميل */
-.app-button {
-  width: 100%;
-  min-height: 43px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 9px 4px;
-  border: 2px solid var(--gold);
-  border-radius: 30px;
-  background: linear-gradient(180deg, #108052, #03432d);
-  color: #fffdf1;
-  text-decoration: none;
-  text-align: center;
-  font-family: inherit;
-  font-size: clamp(10px, 2.6vw, 16px);
-  font-weight: bold;
-  line-height: 1.6;
-  box-shadow:
-    0 3px 6px #0002,
-    inset 0 1px 0 #ffffff40;
-  transition: transform .15s, filter .15s;
-}
-
-.app-button:active {
-  transform: scale(.96);
-  filter: brightness(1.15);
-}
-
-.download-icon {
-  color: #ffdb72;
-  font-size: 19px;
-  flex-shrink: 0;
-}
-
-.app-note {
-  color: #607261;
-  font-size: clamp(9px, 2.2vw, 12px);
-  line-height: 1.7;
-  margin-top: 8px;
-}
-
-/* فاصل زخرفي */
-.section-divider {
-  text-align: center;
-  color: var(--gold2);
-  font-size: 25px;
-  padding: 14px 0 6px;
-}
-
-/* تذييل الموقع */
-footer {
-  margin-top: 22px;
-  padding: 22px 10px 25px;
-  text-align: center;
-  color: #ffdc79;
-  background:
-    radial-gradient(ellipse at top, #126344, transparent 75%),
-    linear-gradient(145deg, #06452f, #02271c);
-  border-top: 4px solid var(--gold);
-  line-height: 2;
-  font-size: 13px;
-}
-
-footer .footer-title {
-  font-weight: bold;
-  font-size: 15px;
-}
-
-footer strong {
-  display: block;
-  font-size: clamp(19px, 4.5vw, 27px);
-  margin: 3px 0;
-  text-shadow: 0 2px 4px #0005;
-}
-
-footer .prayer {
-  color: #fff7df;
-  font-size: 13px;
-}
-
-/* الشاشات الكبيرة */
-@media (min-width: 650px) {
-  .hero {
-    padding: 35px 15px;
-  }
-
-  .apps {
-    gap: 22px;
-    padding: 16px;
-  }
-
-  .app-card {
-    padding: 20px 16px;
-    border-radius: 23px;
-  }
-
-  .app-card p {
-    font-size: 16px;
-  }
-
-  .app-button {
-    font-size: 16px;
-    min-height: 50px;
-  }
-}
-</style></head><body><header class="hero">
-  <div class="ornament">✦ ❖ ✦</div>  <h1>
-    تطبيقات الأستاذ<br>
-    يوسف علي الدغمش
-  </h1>  <p class="subtitle">
-    موقع يضم تطبيقات وبرامج قام بتصميمها وتطويرها
-  </p>  <div class="gold-line"></div>
-</header><section class="intro">
+<meta name="theme-color" content="#063d2b">
+<title>تطبيقات الأستاذ يوسف علي الدغمش</title>
+<meta name="description" content="موقع تطبيقات الأستاذ يوسف علي الدغمش، يضم زاد الخير وحاسبة الوقود الذكية وتطبيق ديوني وتطبيق أين الوقود؟.">
+<style>
+:root{--green:#06452f;--dark:#02271c;--green2:#08704a;--gold:#e7bd58;--gold2:#b88625;--cream:#fff9e9;--ink:#163d2c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:#f7f0d9}
+.hero{position:relative;overflow:hidden;text-align:center;padding:28px 12px 30px;color:white;background:radial-gradient(ellipse at 50% 0%,#16724e 0%,transparent 58%),linear-gradient(145deg,#07563b,#02271c 75%);border-bottom:5px solid var(--gold);box-shadow:0 7px 18px #0003}
+.hero::before,.hero::after{content:"✦";position:absolute;color:var(--gold);font-size:48px;opacity:.45;top:15px}.hero::before{right:12px}.hero::after{left:12px}
+.ornament{color:var(--gold);font-size:24px;margin-bottom:5px}
+.hero h1{color:#ffdc79;font-size:clamp(23px,5.5vw,39px);line-height:1.55;margin:0;text-shadow:0 3px 5px #0008}
+.hero .subtitle{font-size:clamp(12px,3vw,16px);line-height:1.9;margin:8px 0 0}
+.gold-line{width:65%;max-width:310px;height:2px;margin:17px auto 0;background:linear-gradient(to right,transparent,var(--gold),#fff0ae,var(--gold),transparent);position:relative}
+.gold-line::after{content:"❖";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--green);color:var(--gold);padding:0 10px;font-size:23px}
+.intro{text-align:center;padding:23px 8px 18px;background:radial-gradient(ellipse at top,#fffdf4,transparent 85%)}
+.intro h2{color:var(--green);font-size:clamp(17px,4vw,25px);line-height:1.6;margin:0 0 7px}
+.intro p{font-size:clamp(13px,3.2vw,17px);margin:0;color:#51452b}
+.apps{width:100%;max-width:1000px;margin:0 auto;padding:8px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
+.app-card{min-width:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 7px 12px;border:3px solid var(--green);border-radius:19px;background:linear-gradient(145deg,#fffdf3,#fff7df);box-shadow:0 6px 13px #183c2925,inset 0 0 0 2px var(--gold)}
+.app-card::before{content:"❖";color:var(--gold2);font-size:17px;position:absolute;top:5px;right:7px}
+.app-card::after{content:"❖";color:var(--gold2);font-size:17px;position:absolute;top:5px;left:7px}
+.app-icon{width:clamp(66px,19vw,132px);height:clamp(66px,19vw,132px);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin:7px auto 10px;border:4px solid var(--gold);border-radius:25px;background:radial-gradient(circle at 35% 20%,#188957,transparent 50%),linear-gradient(145deg,#07563b,#01291c);box-shadow:0 5px 12px #0003,inset 0 0 0 2px #ffffff35;font-size:clamp(36px,10vw,73px)}
+.app-card h3{color:var(--green);font-size:clamp(14px,3.5vw,24px);line-height:1.65;margin:2px 0 7px}
+.app-card p{color:#293d30;font-size:clamp(11px,2.7vw,16px);line-height:1.95;margin:0 0 14px;width:100%;flex-grow:1}
+.app-button{width:100%;min-height:43px;display:flex;align-items:center;justify-content:center;gap:4px;padding:9px 4px;border:2px solid var(--gold);border-radius:30px;background:linear-gradient(180deg,#108052,#03432d);color:#fffdf1;text-decoration:none;text-align:center;font-family:inherit;font-size:clamp(10px,2.6vw,16px);font-weight:bold;line-height:1.6;box-shadow:0 3px 6px #0002,inset 0 1px 0 #ffffff40;transition:transform .15s,filter .15s}
+.app-button:active{transform:scale(.96);filter:brightness(1.15)}
+.download-icon{color:#ffdb72;font-size:19px;flex-shrink:0}
+.app-note{color:#607261;font-size:clamp(9px,2.2vw,12px);line-height:1.7;margin-top:8px}
+.section-divider{text-align:center;color:var(--gold2);font-size:25px;padding:14px 0 6px}
+footer{margin-top:22px;padding:22px 10px 25px;text-align:center;color:#ffdc79;background:radial-gradient(ellipse at top,#126344,transparent 75%),linear-gradient(145deg,#06452f,#02271c);border-top:4px solid var(--gold);line-height:2;font-size:13px}
+footer .footer-title{font-weight:bold;font-size:15px}footer strong{display:block;font-size:clamp(19px,4.5vw,27px);margin:3px 0;text-shadow:0 2px 4px #0005}footer .prayer{color:#fff7df;font-size:13px}
+@media(min-width:650px){.hero{padding:35px 15px}.apps{gap:22px;padding:16px}.app-card{padding:20px 16px;border-radius:23px}.app-card p{font-size:16px}.app-button{font-size:16px;min-height:50px}}
+</style></head><body>
+<header class="hero">
+  <div class="ornament">✦ ❖ ✦</div>
+  <h1>تطبيقات الأستاذ<br>يوسف علي الدغمش</h1>
+  <p class="subtitle">موقع يضم تطبيقات وبرامج قام بتصميمها وتطويرها</p>
+  <div class="gold-line"></div>
+</header>
+<section class="intro">
   <h2>تطبيقات نافعة لخدمة مجتمعنا</h2>
   <p>أعمال بسيطة ... وأجر عظيم</p>
-</section><main class="apps">  <!-- بطاقة زاد الخير -->  <article class="app-card">
+</section>
+<main class="apps">
+  <!-- بطاقة زاد الخير -->
+  <article class="app-card">
     <div class="app-icon" aria-hidden="true">🕌</div><h3>زاد الخير</h3>
+    <p>تطبيق إسلامي يضم الأذكار والأدعية والقرآن الكريم ومواقيت الصلاة والمسبحة الإلكترونية، مع إمكانية الاستفادة من ميزاته دون إنترنت.</p>
+    <a class="app-button" href="zadalkhyr.comy-5.apk" download="zadalkhyr.comy-5.apk"><span class="download-icon">⬇</span>تحميل زاد الخير</a>
+    <div class="app-note">تطبيق إسلامي متنوع</div>
+  </article>
 
-<p>
-  تطبيق إسلامي يضم الأذكار والأدعية والقرآن الكريم
-  ومواقيت الصلاة والمسبحة الإلكترونية،
-  مع إمكانية الاستفادة من ميزاته دون إنترنت.
-</p>
-
-<a
-  class="app-button"
-  href="zadalkhyr.comy-5.apk"
-  download="zadalkhyr.comy-5.apk"
->
-  <span class="download-icon">⬇</span>
-  تحميل زاد الخير
-</a>
-
-<div class="app-note">تطبيق إسلامي متنوع</div>
-
-  </article>  <!-- بطاقة حاسبة الوقود الذكية -->  <article class="app-card">
+  <!-- بطاقة حاسبة الوقود الذكية -->
+  <article class="app-card">
     <div class="app-icon" aria-hidden="true">⛽</div><h3>حاسبة الوقود الذكية</h3>
+    <p>حاسبة عملية لجمع كميات مادتين من الوقود معًا، مما يسهل الحسابات اليومية للعامل في المحطة.</p>
+    <a class="app-button" href="hasba.c-1.apk" download="hasba.c-1.apk"><span class="download-icon">⬇</span>تحميل حاسبة الوقود</a>
+    <div class="app-note">حاسبة عملية للوقود</div>
+  </article>
 
-<p>
-  حاسبة عملية لجمع كميات مادتين من الوقود معًا،
-  مما يسهل الحسابات اليومية للعامل في المحطة.
-</p>
+  <!-- بطاقة أين الوقود؟ -->
+  <article class="app-card">
+    <div class="app-icon" aria-hidden="true">📍</div><h3>أين الوقود؟</h3>
+    <p>دليلك لمعرفة أين يتوفر الوقود. استعرض المحطات وحالة توفر البنزين والمازوت والملاحظات المضافة إليها.</p>
+    <a class="app-button" href="waqood-test.html"><span class="download-icon">↗</span>فتح تطبيق أين الوقود؟</a>
+    <div class="app-note">يفتح النسخة المنشورة من التطبيق</div>
+    <!-- أضفنا رابط فتح التطبيق فقط؛ زر APK يحتاج رفع ملف APK إلى المستودع أولاً. -->
+  </article>
 
-<a
-  class="app-button"
-  href="hasba.c-1.apk"
-  download="hasba.c-1.apk"
->
-  <span class="download-icon">⬇</span>
-  تحميل حاسبة الوقود
-</a>
-
-<div class="app-note">حاسبة عملية للوقود</div>
-
-  </article>  <!-- بطاقة تطبيق ديوني -->  <article class="app-card">
+  <!-- بطاقة تطبيق ديوني -->
+  <article class="app-card">
     <div class="app-icon" aria-hidden="true">📒</div><h3>ديوني</h3>
-
-<p>
-  تطبيق لتنظيم ديون العملاء وتسجيل الحركات المالية،
-  مع إمكانية مراجعة أرصدة العملاء وكشوف حساباتهم
-  وطباعة التقارير عند دعم الجهاز لذلك.
-</p>
-
-<a
-  class="app-button"
-  href="ديوني.apk"
-  download="ديوني.apk"
->
-  <span class="download-icon">⬇</span>
-  تحميل تطبيق ديوني
-</a>
-
-<div class="app-note">إدارة سهلة لحسابات العملاء</div>
-
-  </article></main><div class="section-divider">❖ ✦ ❖</div><footer>
-  <div class="footer-title">
-    قام بتصميم هذا الموقع أخوكم في الله
-  </div><strong>يوسف علي الدغمش</strong>
-
-  <div class="prayer">
-    لا تنسونا من صالح دعائكم
-  </div>  <div class="ornament">✦ ❖ ✦</div>
-</footer></body>
-</html>
+    <p>تطبيق لتنظيم ديون العملاء وتسجيل الحركات المالية، مع إمكانية مراجعة أرصدة العملاء وكشوف حساباتهم وطباعة التقارير عند دعم الجهاز لذلك.</p>
+    <a class="app-button" href="ديوني.apk" download="ديوني.apk"><span class="download-icon">⬇</span>تحميل تطبيق ديوني</a>
+    <div class="app-note">إدارة سهلة لحسابات العملاء</div>
+  </article>
+</main>
+<div class="section-divider">❖ ✦ ❖</div>
+<footer>
+  <div class="footer-title">قام بتصميم هذا الموقع أخوكم في الله</div>
+  <strong>يوسف علي الدغمش</strong>
+  <div class="prayer">لا تنسونا من صالح دعائكم</div>
+  <div class="ornament">✦ ❖ ✦</div>
+</footer>
+</body></html>
