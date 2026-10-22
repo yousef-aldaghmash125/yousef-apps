@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#075c45">
+<title>وين الوقود؟</title>
+<style>
+:root{--green:#075c45;--green2:#087b57;--mint:#e9f6ef;--gold:#f4b923;--ink:#153a31;--muted:#6c817a;--line:#dce9e2;--white:#fff;--bg:#f5f8f5;--red:#c4473d}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.topbar{background:linear-gradient(120deg,#064b39,#07805b);color:#fff;padding:16px 16px 18px;box-shadow:0 3px 14px #063f3025;position:sticky;top:0;z-index:5}.top-inner{max-width:980px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:15px;background:#fff;color:var(--green);display:grid;place-items:center;font-size:25px;box-shadow:0 4px 12px #002d1f35}.brand h1{font-size:22px;margin:0;cursor:default;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;outline:none;background:transparent;box-shadow:none}.brand h1:focus,.brand h1:active,.brand h1:focus-visible{outline:none;background:transparent;box-shadow:none;color:inherit}.brand p{margin:4px 0 0;font-size:12px;color:#d5f0e4}.iconbtn{background:#ffffff1b;color:white;border:1px solid #ffffff30;border-radius:12px;padding:10px 12px;font-size:18px}.wrap{max-width:980px;margin:0 auto;padding:16px}.hero{border-radius:22px;overflow:hidden;background:linear-gradient(110deg,#07533f,#0b7857);color:white;position:relative;padding:24px 20px;min-height:158px;display:flex;align-items:center;justify-content:space-between;gap:10px}.hero:after{content:"";position:absolute;width:210px;height:210px;border:24px solid #ffffff0d;border-radius:50%;left:-45px;top:-75px}.hero h2{font-size:clamp(25px,5vw,38px);margin:0 0 9px;position:relative;z-index:1}.hero p{margin:0;color:#e0f2e9;line-height:1.7;position:relative;z-index:1}.hero-mark{font-size:66px;filter:drop-shadow(0 8px 9px #003c2c55);padding:0 10px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 12px;gap:10px}.section-head h2{font-size:19px;margin:0}.small-muted{font-size:12px;color:var(--muted)}.fuel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fuel-card{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 4px 12px #174b3610}.fuel-card .fuel-title{display:flex;align-items:center;gap:10px;font-weight:bold;font-size:16px}.fuel-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--mint);font-size:24px}.fuel-card strong{display:block;font-size:25px;margin:12px 0 4px}.fuel-card small{color:var(--muted)}.status-dot{display:inline-block;width:9px;height:9px;background:#28a66b;border-radius:50%;margin-left:5px}.toolbar{display:flex;gap:9px;margin:16px 0;flex-wrap:wrap}.search{flex:1;min-width:180px;border:1px solid var(--line);background:#fff;border-radius:13px;padding:12px 14px;outline-color:var(--green2)}.btn{border-radius:13px;padding:12px 16px;font-weight:bold}.btn-primary{background:var(--green);color:#fff}.btn-gold{background:var(--gold);color:#3f3210}.btn-outline{border:1px solid var(--line);background:#fff;color:var(--green)}.station-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.station{background:#fff;border:2.5px solid #111;border-radius:22px;padding:15px;box-shadow:0 4px 12px #174b3609}.station-top{display:flex;justify-content:space-between;gap:10px}.station h3{margin:0 0 7px;font-size:18px;color:#000;font-weight:800;letter-spacing:.1px}.location{font-size:14px;color:#000;font-weight:700;line-height:1.7;letter-spacing:.1px}.badge{border-radius:30px;padding:6px 9px;font-size:11px;font-weight:bold;white-space:nowrap;background:#e3f6e9;color:#167342;height:max-content}.badge.no{background:#fff0e9;color:#a34a2e}.statuses{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}.pill{display:flex;align-items:center;gap:6px;border:1px solid #111;border-radius:10px;padding:8px 10px;font-size:13px;flex:1;justify-content:center;color:#000;font-weight:700}.pill b{color:#000;font-weight:800}.pill.available{background:#22b34b;border-color:#111}.pill.unavailable{background:#ff5555;border-color:#111}.pill.unknown{background:#f2f2f2;border-color:#111}.updated-time{color:#000;font-size:14px;font-weight:800;letter-spacing:.1px;line-height:1.6}.station-actions{display:flex;gap:8px}.station-actions button{flex:1;padding:10px;border-radius:11px;font-size:12px;font-weight:bold}.note{background:#fff8e3;border:1px solid #f3df9c;color:#6d5714;border-radius:14px;padding:13px 14px;line-height:1.7;font-size:13px;margin-top:16px}.empty{padding:30px;text-align:center;color:var(--muted);background:#fff;border-radius:16px;border:1px dashed var(--line);grid-column:1/-1}.bottom-nav{position:sticky;bottom:0;background:#ffffffed;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px 10px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:10px;z-index:4}.bottom-nav button{background:transparent;color:var(--muted);padding:8px 14px;border-radius:12px;font-size:12px}.bottom-nav button.active{background:var(--mint);color:var(--green);font-weight:bold}.footer{text-align:center;padding:20px 10px 26px;color:#99731a;font-size:13px;line-height:1.9;font-weight:bold}.overlay{position:fixed;inset:0;background:#092b22a8;display:none;align-items:center;justify-content:center;padding:16px;z-index:20}.overlay.show{display:flex}#mapOverlay{z-index:60}#mapOverlay .modal{width:min(100%,820px);max-height:94vh}#realMap{height:min(58vh,520px)!important;min-height:320px}.modal{background:white;border-radius:20px;width:min(100%,520px);max-height:90vh;overflow:auto;padding:20px;box-shadow:0 20px 60px #001d1640}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modal-head h2{font-size:20px;margin:0}.close{background:#edf4ef;color:var(--green);border-radius:10px;width:36px;height:36px;font-size:21px}.field{display:block;margin:12px 0}.field span{display:block;font-weight:bold;font-size:13px;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff;outline-color:var(--green2)}.field textarea{min-height:70px;resize:vertical}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.form-actions{display:flex;gap:10px;margin-top:18px}.form-actions button{flex:1}.admin-card{border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0}.admin-card h3{margin:0 0 8px}.warning{font-size:12px;color:var(--muted);line-height:1.7}.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:#153a31;color:white;padding:12px 18px;border-radius:12px;display:none;z-index:30;box-shadow:0 5px 20px #0002}.toast.show{display:block}
+@media(max-width:650px){.wrap{padding:12px}.hero{padding:19px 16px;min-height:135px}.hero-mark{font-size:50px}.hero p{font-size:13px}.station-list{grid-template-columns:1fr}.fuel-card{padding:13px}.fuel-card strong{font-size:22px}.brand h1{font-size:20px}.bottom-nav{gap:0}.bottom-nav button{padding:8px 11px}.form-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="top-inner">
+  <div class="brand"><div class="logo">⛽</div><div><h1 id="secretAdminTrigger" title="وين الوقود؟">وين الوقود؟</h1><p>دليلك لمعرفة أين يتوفر الوقود</p></div></div>
+  <div style="display:flex;gap:8px;align-items:center"><button class="iconbtn" id="adminPanelOpen" style="display:none" title="لوحة الإدارة" aria-hidden="true" tabindex="-1">⚙</button><button class="iconbtn" id="loginOpen" style="display:none" aria-label="تسجيل الدخول" title="تسجيل الدخول إلى الإدارة" aria-hidden="true" tabindex="-1">♙</button><button class="iconbtn" id="logoutBtn" style="display:none" title="تسجيل الخروج">↪</button></div>
+ </div>
+</header>
+<main class="wrap">
+ <section class="hero">
+  <div><h2>وين الوقود؟</h2><p>اعرف المحطات القريبة منك وحالة توفر البنزين والمازوت<br>قبل أن تنطلق في طريقك.</p></div>
+  <div class="hero-mark">📍</div>
+ </section>
+ <div class="section-head"><h2>ملخص توفر الوقود</h2><span class="small-muted">حسب بيانات المحطات</span></div>
+ <section class="fuel-grid">
+  <article class="fuel-card"><div class="fuel-title"><span class="fuel-icon">🟡</span> البنزين</div><strong id="benzineCount">— محطة</strong><small><span class="status-dot"></span>يتوفر حالياً في المحطات المعلنة</small></article>
+  <article class="fuel-card"><div class="fuel-title"><span class="fuel-icon">🟢</span> المازوت</div><strong id="dieselCount">— محطة</strong><small><span class="status-dot"></span>يتوفر حالياً في المحطات المعلنة</small></article>
+ </section>
+ <div class="section-head"><h2>المحطات</h2><span class="small-muted" id="stationCount">0 محطة</span></div>
+ <div class="toolbar"><input class="search" id="searchInput" placeholder="ابحث باسم المحطة أو المنطقة…" aria-label="البحث عن محطة"><select class="search" id="fuelFilter" style="max-width:150px"><option value="all">كل المحطات</option><option value="benzine">بنزين متوفر</option><option value="diesel">مازوت متوفر</option></select><button class="btn btn-outline" id="mapBtn">⌖ الخريطة</button></div>
+ <section class="station-list" id="stationList"></section>
+ <div class="note" id="generalNote">ℹ️ <b>ملاحظة:</b> تُعرض المحطات المنشورة في قاعدة البيانات. يُرجى التأكد من توفر الوقود قبل التوجه إلى المحطة.</div>
+</main>
+<nav class="bottom-nav"><button class="active" data-view="home">⌂ الرئيسية</button><button data-view="stations">▤ المحطات</button><button id="navMap">⌖ الخريطة</button><button id="navInfo">ⓘ معلومات</button></nav>
+<footer class="footer">هذا التطبيق من تصميم الأستاذ: يوسف علي الدغمش<br>لا تنسونا من صالح دعائكم</footer>
+
+<div class="overlay" id="detailsOverlay"><div class="modal"><div class="modal-head"><h2 id="detailsTitle">تفاصيل المحطة</h2><button class="close" data-close="detailsOverlay">×</button></div><div id="detailsBody"></div></div></div>
+<div class="overlay" id="loginOverlay"><div class="modal"><div class="modal-head"><h2>تسجيل الدخول</h2><button class="close" data-close="loginOverlay">×</button></div><p class="small-muted">دخول مخصص للمدير العام وأصحاب المحطات.</p><label class="field"><span>اسم المستخدم أو البريد الإلكتروني</span><input id="username" autocomplete="username" placeholder="أدخل اسم المستخدم"></label><label class="field"><span>كلمة المرور</span><input id="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور"></label><div class="form-actions"><button class="btn btn-primary" id="loginBtn">دخول</button><button class="btn btn-outline" data-close="loginOverlay">إلغاء</button></div><div class="note"><b>بيانات المدير التجريبية للاختبار فقط</b><br>اسم المستخدم: <b>admin</b><br>كلمة المرور: <b>123456</b></div><p class="warning">تنبيه أمني: هذه بيانات تجريبية داخل الملف وليست آمنة للنشر. سنستبدلها بتسجيل دخول Firebase وصلاحيات حقيقية قبل إطلاق التطبيق.</p></div></div>
+<div class="overlay" id="adminOverlay"><div class="modal"><div class="modal-head"><h2 id="adminTitle">لوحة الإدارة</h2><button class="close" data-close="adminOverlay">×</button></div><div id="adminBody"></div></div></div>
+<div class="overlay" id="mapOverlay"><div class="modal"><div class="modal-head"><h2 id="mapModalTitle">موقع المحطة</h2><button class="close" data-close="mapOverlay">×</button></div><p class="warning" id="mapHelp">اضغط على الخريطة لتحديد موقع المحطة، أو اسحب العلامة إلى المكان الصحيح. يحتاج تحميل الخريطة إلى اتصال بالإنترنت.</p><div id="realMap" style="height:360px;border:2px solid #111;border-radius:14px;overflow:hidden;background:#edf3ef"></div><p id="coordsLabel" style="font-size:13px;font-weight:bold;color:#111">لم يتم تحديد الموقع بعد.</p><div class="form-actions"><button class="btn btn-primary" id="confirmLocationBtn">اعتماد هذا الموقع</button><button class="btn btn-outline" data-close="mapOverlay">إلغاء</button></div></div></div>
+<div class="overlay" id="editOverlay"><div class="modal"><div class="modal-head"><h2 id="editTitle">إضافة محطة</h2><button class="close" data-close="editOverlay">×</button></div>
+<form id="stationForm">
+ <input type="hidden" id="stationId">
+ <label class="field"><span>اسم المحطة *</span><input id="stationName" required placeholder="مثال: محطة يوسف دغمش"></label>
+ <div class="form-grid"><label class="field"><span>المحافظة *</span><select id="stationProvince" required><option value="">اختر المحافظة</option><option>دمشق</option><option>ريف دمشق</option><option>حلب</option><option>حمص</option><option>حماة</option><option>اللاذقية</option><option>طرطوس</option><option>إدلب</option><option>دير الزور</option><option>الحسكة</option><option>الرقة</option><option>درعا</option><option>السويداء</option><option>القنيطرة</option></select></label><label class="field"><span>المنطقة / البلدة *</span><input id="stationArea" required placeholder="اسم المنطقة"></label></div>
+ <div class="form-grid"><label class="field"><span>حالة البنزين</span><select id="stationBenzine"><option value="yes">متوفر</option><option value="no">غير متوفر</option><option value="unknown">لم يحدد</option></select></label><label class="field"><span>حالة المازوت</span><select id="stationDiesel"><option value="yes">متوفر</option><option value="no">غير متوفر</option><option value="unknown">لم يحدد</option></select></label></div>
+ <div class="form-grid"><label class="field"><span>رقم الهاتف</span><input id="stationPhone" type="tel" placeholder="رقم التواصل"></label><label class="field"><span>ساعات العمل</span><input id="stationHours" placeholder="مثال: 6 صباحاً - 10 مساءً"></label></div>
+ <label class="field"><span>موقع المحطة على الخريطة</span><div style="display:flex;gap:8px"><input id="stationMap" type="url" placeholder="رابط خرائط (اختياري)" style="min-width:0"><button class="btn btn-outline" type="button" id="pickLocationBtn" style="white-space:nowrap">📍 تحديد الموقع</button></div></label>
+ <div class="form-grid"><label class="field"><span>خط العرض</span><input id="stationLat" type="number" step="any" placeholder="يُحدد من الخريطة"></label><label class="field"><span>خط الطول</span><input id="stationLng" type="number" step="any" placeholder="يُحدد من الخريطة"></label></div>
+ <label class="field"><span>ملاحظات المحطة</span><textarea id="stationNote" placeholder="أي تفاصيل تفيد الزبائن"></textarea></label>
+ <div class="form-actions"><button class="btn btn-primary" type="submit">حفظ المحطة</button><button class="btn btn-outline" type="button" data-close="editOverlay">إلغاء</button></div>
+</form></div></div>
+<div class="toast" id="toast"></div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDB3Evi76Wf_gfYpzhPuumwe6fQv2lNL9g",
+  authDomain: "ween-alwaqood.firebaseapp.com",
+  databaseURL: "https://ween-alwaqood-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "ween-alwaqood",
+  storageBucket: "ween-alwaqood.firebasestorage.app",
+  messagingSenderId: "931224397618",
+  appId: "1:931224397618:web:794b8610c3c9f00bc2992b"
+};
+
+firebase.initializeApp(firebaseConfig);
+const fbAuth = firebase.auth();
+const fbDb = firebase.database();
+const ADMIN_UID = 'hpu9HrQoEoOvsvDcNB2sRyJ5H0B2';
+const demoStations=[]; // لا نعرض محطات وهمية في النسخة المتصلة.
+let stations=[];
+let currentRole=''; let currentStationId='';
+let stationOwners=[];
+const $=id=>document.getElementById(id);
+function saveOwners(){toast('إدارة حسابات أصحاب المحطات تحتاج إعداد الصلاحيات الآمنة أولاً.');}
+async function save(){
+  try {
+    const payload={};
+    stations.forEach(s=>{payload[s.id]=s;});
+    await fbDb.ref('stations').set(payload);
+    render();
+    toast('تم حفظ المحطات على قاعدة البيانات.');
+  } catch(err) {
+    console.error(err);
+    toast('تعذر الحفظ؛ تحقق من تسجيل الدخول وقواعد أمان Firebase.');
+  }
+}
+// مزامنة مباشرة للمحطات بين جميع الأجهزة.
+fbDb.ref('stations').on('value', snap=>{
+  const value=snap.val() || {};
+  stations=Object.entries(value).map(([id,s])=>({...s,id,updated:Number(s.updated)||Date.now()}));
+  render();
+}, err=>{
+  console.error(err);
+  $('generalNote').innerHTML='ℹ️ <b>ملاحظة:</b> تعذر تحميل المحطات من قاعدة البيانات. يجب ضبط قواعد الأمان في Firebase قبل الاختبار.';
+});
+function statusText(s){return s==='yes'?'متوفر':s==='no'?'غير متوفر':'لم يحدد'}
+function timeText(t){let hours=Math.floor((Date.now()-t)/3600000);if(hours<1)return'قبل أقل من ساعة';if(hours<24)return`منذ ${hours} ساعة`;return`منذ ${Math.floor(hours/24)} يوم`;}
+function render(){
+ const q=$('searchInput').value.trim().toLowerCase(), f=$('fuelFilter').value;
+ const shown=stations.filter(s=>(`${s.name} ${s.province} ${s.area}`.toLowerCase().includes(q))&&(f==='all'||s[f]==='yes'));
+ $('stationCount').textContent=`${shown.length} محطة`;
+ $('benzineCount').textContent=`${stations.filter(s=>s.benzine==='yes').length} محطة`;
+ $('dieselCount').textContent=`${stations.filter(s=>s.diesel==='yes').length} محطة`;
+ $('stationList').innerHTML=shown.length?shown.map(s=>`<article class="station"><div class="station-top"><div><h3>${esc(s.name)}</h3><div class="location">📍 ${esc(s.province)} — ${esc(s.area)}</div></div><span class="badge ${Date.now()-s.updated>86400000?'no':''}">${Date.now()-s.updated>86400000?'تحديث قديم':'محدث'}</span></div><div class="statuses"><div class="pill ${s.benzine==='yes'?'available':s.benzine==='no'?'unavailable':'unknown'}">البنزين <b>${statusText(s.benzine)}</b></div><div class="pill ${s.diesel==='yes'?'available':s.diesel==='no'?'unavailable':'unknown'}">المازوت <b>${statusText(s.diesel)}</b></div></div>${Date.now()-s.updated>86400000?'<div class="warning">⚠️ مضى أكثر من يوم على آخر تحديث؛ يُفضّل التواصل مع المحطة.</div>':''}<div class="updated-time" style="margin-bottom:12px">آخر تحديث: ${new Date(s.updated).toLocaleDateString('en-CA')} — ${new Date(s.updated).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</div><div class="station-actions"><button class="btn-primary" onclick="showDetails('${s.id}')">تفاصيل المحطة</button><button class="btn-outline" onclick="directions('${s.id}')">📍 موقع المحطة</button></div></article>`).join(''):'<div class="empty">لا توجد محطات منشورة في قاعدة البيانات بعد.</div>';
+}
+function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function openModal(id){$(id).classList.add('show')}function closeModal(id){$(id).classList.remove('show')}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2800)}
+function showDetails(id){let s=stations.find(x=>x.id===id);if(!s)return;$('detailsTitle').textContent=s.name;$('detailsBody').innerHTML=`<div class="location" style="font-size:15px;color:#000;font-weight:800">📍 الموقع: ${esc(s.province)} — ${esc(s.area)}</div><div class="statuses"><div class="pill ${s.benzine==='yes'?'available':s.benzine==='no'?'unavailable':'unknown'}">البنزين <b>${statusText(s.benzine)}</b></div><div class="pill ${s.diesel==='yes'?'available':s.diesel==='no'?'unavailable':'unknown'}">المازوت <b>${statusText(s.diesel)}</b></div></div><div class="admin-card"><b>☎️ الهاتف:</b> ${s.phone?`<a href="tel:${esc(s.phone)}">${esc(s.phone)}</a>`:'غير مضاف'}<br><br><b>🕒 ساعات العمل:</b> ${esc(s.hours||'غير محددة')}<br><br><b>📝 ملاحظات:</b> ${esc(s.note||'لا توجد ملاحظات')}<br><br><b>آخر تحديث:</b> ${timeText(s.updated)}</div>${Date.now()-s.updated>86400000?'<div class="note">⚠️ مضى أكثر من يوم على آخر تحديث؛ يُفضّل الاتصال بالمحطة للتأكد من توفر الوقود.</div>':''}<button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="directions('${s.id}')">⌖ عرض الموقع</button>`;openModal('detailsOverlay')}
+let mapInstance=null, mapMarker=null, pendingCoords=null, mapMode='edit', mapStationId='', stationMapMarkers=[];
+function updateCoordsLabel(lat,lng){$('coordsLabel').textContent=`خط العرض: ${lat.toFixed(6)} — خط الطول: ${lng.toFixed(6)}`;}
+function openPicker(mode, station){mapMode=mode;mapStationId=station?.id||'';pendingCoords=station?.lat&&station?.lng?{lat:Number(station.lat),lng:Number(station.lng)}:null;$('mapModalTitle').textContent=mode==='view'?(station?.name||'موقع المحطة'):'تحديد موقع المحطة';$('confirmLocationBtn').style.display=mode==='view'?'none':'block';openModal('mapOverlay');setTimeout(()=>{if(!window.L){$('realMap').innerHTML='<div style="padding:20px">تعذر تحميل الخريطة. تحقق من اتصال الإنترنت ثم أعد المحاولة.</div>';return;}if(!mapInstance){
+ mapInstance=L.map('realMap').setView(pendingCoords?[pendingCoords.lat,pendingCoords.lng]:[33.5138,36.2765],pendingCoords?15:11);
+ const streetLayer=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'});
+ const satelliteLayer=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics'});
+ const baseMaps={'خريطة الشوارع':streetLayer,'صور الأقمار الصناعية':satelliteLayer};
+ streetLayer.addTo(mapInstance);
+ L.control.layers(baseMaps,null,{position:'topright',collapsed:false}).addTo(mapInstance);
+ mapInstance.on('click',e=>{if(mapMode==='view'||mapMode==='all')return;setMarker(e.latlng.lat,e.latlng.lng);});
+ }
+ mapInstance.invalidateSize();if(mapMode==='all'){showAllStationsOnMap();return;}if(pendingCoords){mapInstance.setView([pendingCoords.lat,pendingCoords.lng],15);setMarker(pendingCoords.lat,pendingCoords.lng);}else{mapInstance.setView([33.5138,36.2765],11);if(mapMarker){mapInstance.removeLayer(mapMarker);mapMarker=null;}$('coordsLabel').textContent='اضغط على الخريطة لتحديد موقع المحطة.';}},250);}
+function setMarker(lat,lng){pendingCoords={lat,lng};if(mapMarker)mapMarker.setLatLng([lat,lng]);else mapMarker=L.marker([lat,lng],{draggable:mapMode!=='view'}).addTo(mapInstance);mapMarker.dragging?.enable();mapMarker.off('dragend');mapMarker.on('dragend',e=>{const pt=e.target.getLatLng();pendingCoords={lat:pt.lat,lng:pt.lng};updateCoordsLabel(pt.lat,pt.lng);});updateCoordsLabel(lat,lng);}
+$('pickLocationBtn').onclick=()=>openPicker('edit',{lat:$('stationLat').value,lng:$('stationLng').value});
+$('confirmLocationBtn').onclick=()=>{if(!pendingCoords){toast('حدد موقع المحطة على الخريطة أولاً.');return;}if(mapMode==='edit'){$('stationLat').value=pendingCoords.lat.toFixed(6);$('stationLng').value=pendingCoords.lng.toFixed(6);closeModal('mapOverlay');toast('تم تحديد الموقع؛ احفظ المحطة لتثبيته.');}};
+function directions(id){
+ let s=stations.find(x=>x.id===id);if(!s)return;
+ let destination='';
+ if(s.lat&&s.lng&&Number.isFinite(Number(s.lat))&&Number.isFinite(Number(s.lng))){destination=`${s.lat},${s.lng}`;}
+ else if(s.map){
+   const match=String(s.map).match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/)||String(s.map).match(/[?&](?:q|query|destination)=(-?\d+(?:\.\d+)?)[,%2C]+(-?\d+(?:\.\d+)?)/i);
+   if(match)destination=`${match[1]},${match[2]}`;
+   else destination=`${s.name}، ${s.area}، ${s.province}`;
+ }else{destination=`${s.name}، ${s.area}، ${s.province}`;}
+ const url='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(destination)+'&travelmode=driving';
+ window.open(url,'_blank','noopener');
+}
+$('searchInput').addEventListener('input',render);$('fuelFilter').addEventListener('change',render);
+$('loginOpen').onclick=()=>openModal('loginOverlay');
+// فتح تسجيل الدخول عبر الضغط خمس مرات على عنوان التطبيق، دون إظهار زر الإدارة.
+let secretTitleClicks=0, secretTitleTimer=null;
+function secretTitleClick(){
+  secretTitleClicks++;
+  clearTimeout(secretTitleTimer);
+  secretTitleTimer=setTimeout(()=>{secretTitleClicks=0;},2500);
+  if(secretTitleClicks>=5){
+    secretTitleClicks=0;clearTimeout(secretTitleTimer);
+    if(currentRole==='admin') openAdmin(); else openModal('loginOverlay');
+  }
+}
+$('secretAdminTrigger').addEventListener('click',secretTitleClick);
+
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeModal(o.id)}));
+$('loginBtn').onclick=async()=>{
+ const email=$('username').value.trim(), password=$('password').value;
+ if(!email||!password){toast('أدخل البريد الإلكتروني وكلمة المرور.');return;}
+ try {
+   await fbAuth.signInWithEmailAndPassword(email,password);
+   $('password').value='';
+ } catch(err) {
+   console.error(err);
+   toast('تعذر تسجيل الدخول. تحقق من البريد وكلمة المرور وتفعيل Email/Password في Firebase.');
+ }
+};
+fbAuth.onAuthStateChanged(async user=>{
+ currentRole=''; currentStationId='';
+ $('loginOpen').style.display='none'; $('adminPanelOpen').style.display='none'; $('logoutBtn').style.display='none';
+ if(!user){render();return;}
+ try {
+   if(user.uid===ADMIN_UID){
+     currentRole='admin';
+   } else {
+     const ownerSnap=await fbDb.ref('stationOwners/'+user.uid).once('value');
+     const owner=ownerSnap.val();
+     if(owner && owner.active!==false){currentRole='owner';currentStationId=owner.stationId||'';}
+   }
+   if(currentRole){
+     $('logoutBtn').style.display='inline-block';
+     if(currentRole==='admin'){$('adminPanelOpen').style.display='inline-block';openAdmin();}
+     else toast('تم تسجيل الدخول. صلاحيات صاحب المحطة قيد استكمال ضبطها.');
+   } else {
+     await fbAuth.signOut();
+     toast('هذا الحساب غير مضاف ضمن المدير أو أصحاب المحطات.');
+   }
+   render();
+ } catch(err) {
+   console.error(err);
+   toast('تم تسجيل الدخول لكن تعذر التحقق من الصلاحيات؛ راجع قواعد Firebase.');
+ }
+});
+function openAdmin(){
+ $('adminTitle').textContent='لوحة الإدارة';
+ const stationRows = stations.length
+  ? stations.map(s=>`<div class="admin-card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div><h3 style="margin:0 0 6px">${esc(s.name)}</h3><div class="warning">📍 ${esc(s.province)} — ${esc(s.area)}</div><div class="warning">البنزين: ${statusText(s.benzine)} | المازوت: ${statusText(s.diesel)}</div></div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn btn-outline" type="button" onclick="adminEditStation('${esc(s.id)}')">✏️ تعديل المحطة</button><button class="btn" style="background:#b42318;color:#fff" type="button" onclick="removeStation('${esc(s.id)}')">🗑️ إزالة المحطة</button></div>
+    </div>`).join('')
+  : '<div class="empty">لا توجد محطات حالياً. اضغط «إضافة محطة» للبدء.</div>';
+ $('adminBody').innerHTML=`<div class="admin-card"><h3>إدارة المحطات</h3><p class="warning">يمكنك إضافة محطة جديدة أو اختيار محطة موجودة وتعديل بياناتها وحالة توفر الوقود.</p><button class="btn btn-primary" id="addStationBtn">＋ إضافة محطة</button></div><h3 style="margin:18px 4px 8px">المحطات الحالية</h3><div id="adminStationList">${stationRows}</div><div class="admin-card"><h3>إدارة أصحاب المحطات</h3><p class="warning">ستتم إضافة حسابات أصحاب المحطات من هنا بعد ربط Firebase Authentication ووظائف الخادم الآمنة.</p><button class="btn btn-outline" id="ownersBtn">إعداد حسابات أصحاب المحطات</button></div><div class="admin-card"><h3>الملاحظة العامة</h3><label class="field"><textarea id="generalNoteInput">تُعرض المحطات المنشورة في قاعدة البيانات. يُرجى التأكد من توفر الوقود قبل التوجه إلى المحطة.</textarea></label><button class="btn btn-outline" id="saveGeneralNote">حفظ الملاحظة</button></div><p class="warning">تنبيه: لا تفتح قواعد البيانات للكتابة العامة. يجب ضبط قواعد Firebase لتقييد التعديلات بالمدير وصاحب المحطة المصرّح له.</p>`;
+ $('addStationBtn').onclick=()=>{closeModal('adminOverlay');editStation();};
+ $('ownersBtn').onclick=openOwnersAdmin;
+ $('saveGeneralNote').onclick=()=>{const n=$('generalNoteInput').value;$('generalNote').innerHTML='ℹ️ <b>ملاحظة:</b> '+esc(n);toast('تم تحديث الملاحظة في هذه الصفحة.');};
+ openModal('adminOverlay');
+}
+function openOwnersAdmin(){
+ if(currentRole!=='admin'){toast('هذه الصفحة مخصصة للمدير العام.');return;}
+ $('adminTitle').textContent='إدارة أصحاب المحطات';
+ renderOwnersAdmin();
+}
+function renderOwnersAdmin(){
+ const stationOptions=stations.map(s=>`<option value="${esc(s.id)}">${esc(s.name)} — ${esc(s.province)} / ${esc(s.area)}</option>`).join('');
+ const rows=stationOwners.length?stationOwners.map(o=>{
+  const st=stations.find(s=>s.id===o.stationId);
+  return `<div class="admin-card"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><div><h3>${esc(o.name)}</h3><div class="warning">اسم المستخدم: ${esc(o.username)}</div><div class="warning">الهاتف: ${esc(o.phone||'غير مضاف')}</div><div class="warning">المحطة: ${esc(st?st.name:'لم يتم ربط محطة')}</div><div class="warning">الحالة: <b>${o.active?'فعال':'موقوف'}</b></div></div><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn btn-outline" onclick="editOwner('${esc(o.id)}')">✏️ تعديل</button><button class="btn ${o.active?'btn-outline':'btn-primary'}" onclick="toggleOwner('${esc(o.id)}')">${o.active?'⛔ إيقاف':'🟢 تفعيل'}</button><button class="btn btn-outline" onclick="resetOwnerPassword('${esc(o.id)}')">🔑 إعادة تعيين كلمة المرور</button></div></div></div>`;
+ }).join(''):'<div class="empty">لا يوجد أصحاب محطات بعد. اضغط «إضافة صاحب محطة» للبدء.</div>';
+ $('adminBody').innerHTML=`<div class="admin-card"><h3>إدارة أصحاب المحطات</h3><p class="warning">أضف بيانات صاحب المحطة واربطه بمحطة واحدة. هذه الشاشة لا تنشئ حسابات دخول تلقائياً. إضافة حسابات أصحاب المحطات وتعيين صلاحياتهم تحتاج إعداداً آمناً منفصلاً في Firebase.</p><button class="btn btn-primary" onclick="newOwner()">＋ إضافة صاحب محطة</button><button class="btn btn-outline" style="margin-right:6px" onclick="openAdmin()">↩ العودة إلى لوحة الإدارة</button></div><h3 style="margin:18px 4px 8px">قائمة أصحاب المحطات (${stationOwners.length})</h3>${rows}<div class="admin-card"><h3 id="ownerFormTitle">إضافة / تعديل بيانات صاحب محطة</h3><form id="ownerForm"><input type="hidden" id="ownerId"><label class="field"><span>اسم صاحب المحطة *</span><input id="ownerName" required placeholder="الاسم الكامل"></label><label class="field"><span>اسم المستخدم المقترح *</span><input id="ownerUsername" required autocomplete="off" placeholder="مثال: station_saka"></label><label class="field"><span>رقم الهاتف</span><input id="ownerPhone" type="tel" placeholder="رقم التواصل"></label><label class="field"><span>المحطة التابعة له *</span><select id="ownerStation" required><option value="">اختر المحطة</option>${stationOptions}</select></label><div class="form-actions"><button class="btn btn-primary" type="submit">💾 حفظ البيانات</button><button class="btn btn-outline" type="button" onclick="newOwner()">مسح الحقول</button></div></form><p class="warning">لا تدخل كلمة مرور هنا. ستُنشأ بيانات الدخول الفعلية عبر Firebase بطريقة آمنة في مرحلة الربط.</p></div>`;
+ $('ownerForm').onsubmit=saveOwner;
+}
+function newOwner(){const f=$('ownerForm');if(f)f.reset();$('ownerId').value='';$('ownerFormTitle').textContent='إضافة صاحب محطة';$('ownerName').focus();}
+function editOwner(id){const o=stationOwners.find(x=>x.id===id);if(!o)return;$('ownerId').value=o.id;$('ownerName').value=o.name;$('ownerUsername').value=o.username;$('ownerPhone').value=o.phone||'';$('ownerStation').value=o.stationId;$('ownerFormTitle').textContent='تعديل بيانات صاحب المحطة';$('ownerFormTitle').scrollIntoView({behavior:'smooth',block:'center'});}
+function saveOwner(e){e.preventDefault();const id=$('ownerId').value||'owner_'+Date.now();const username=$('ownerUsername').value.trim();if(stationOwners.some(o=>o.username.toLowerCase()===username.toLowerCase()&&o.id!==id)){toast('اسم المستخدم مستخدم بالفعل في هذه النسخة التجريبية.');return;}const old=stationOwners.find(o=>o.id===id);const o={id,name:$('ownerName').value.trim(),username,phone:$('ownerPhone').value.trim(),stationId:$('ownerStation').value,active:old?old.active:true};const i=stationOwners.findIndex(x=>x.id===id);if(i>=0)stationOwners[i]=o;else stationOwners.push(o);saveOwners();toast('هذه البيانات لا تنشئ حساب دخول. أضف حساب صاحب المحطة من Firebase ثم اربط UID بصلاحيات المحطة.');renderOwnersAdmin();}
+function toggleOwner(id){const o=stationOwners.find(x=>x.id===id);if(!o)return;o.active=!o.active;saveOwners();renderOwnersAdmin();toast(o.active?'تم تفعيل الحالة في النموذج التجريبي.':'تم إيقاف الحالة في النموذج التجريبي.');}
+function resetOwnerPassword(id){const o=stationOwners.find(x=>x.id===id);if(!o)return;toast('إعادة تعيين كلمة المرور ستعمل بعد ربط Firebase Authentication؛ لم تتغير كلمة المرور الآن.');}
+function adminEditStation(id){
+ if(currentRole!=='admin'){toast('يجب تسجيل الدخول كمدير أولاً.');return;}
+ closeModal('adminOverlay');
+ editStation(id);
+}
+function removeStation(id){
+ if(currentRole!=='admin'){toast('إزالة المحطات متاحة للمدير العام فقط.');return;}
+ const station=stations.find(s=>s.id===id);
+ if(!station)return;
+ const assigned=stationOwners.filter(o=>o.stationId===id);
+ const extra=assigned.length?`\n\nيوجد ${assigned.length} صاحب محطة مرتبط بهذه المحطة؛ سيتم فك ارتباطه بها.`:'';
+ if(!confirm(`هل أنت متأكد من إزالة «${station.name}»؟\nسيتم حذفها من قائمة المحطات في هذه النسخة التجريبية.${extra}`))return;
+ stations=stations.filter(s=>s.id!==id);
+ stationOwners=stationOwners.map(o=>o.stationId===id?{...o,stationId:''}:o);
+ saveOwners();
+ save();
+ openAdmin();
+ toast('تمت إزالة المحطة من النسخة التجريبية.');
+}
+$('adminPanelOpen').onclick=()=>{if(currentRole==='admin')openAdmin();};
+$('logoutBtn').onclick=async()=>{try{await fbAuth.signOut();currentRole='';currentStationId='';$('loginOpen').style.display='none';$('adminPanelOpen').style.display='none';$('logoutBtn').style.display='none';render();toast('تم تسجيل الخروج.');}catch(err){toast('تعذر تسجيل الخروج؛ أعد المحاولة.');}};
+function editStation(id=''){let s=stations.find(x=>x.id===id)||{};$('editTitle').textContent=id?'تعديل المحطة':'إضافة محطة';$('stationId').value=id;$('stationName').value=s.name||'';$('stationProvince').value=s.province||'';$('stationArea').value=s.area||'';$('stationBenzine').value=s.benzine||'yes';$('stationDiesel').value=s.diesel||'yes';$('stationPhone').value=s.phone||'';$('stationHours').value=s.hours||'';$('stationMap').value=s.map||'';$('stationLat').value=s.lat||'';$('stationLng').value=s.lng||'';$('stationNote').value=s.note||'';openModal('editOverlay');}
+$('stationForm').onsubmit=e=>{e.preventDefault();const id=$('stationId').value||'s'+Date.now();const item={id,name:$('stationName').value.trim(),province:$('stationProvince').value,area:$('stationArea').value.trim(),benzine:$('stationBenzine').value,diesel:$('stationDiesel').value,phone:$('stationPhone').value.trim(),hours:$('stationHours').value.trim(),map:$('stationMap').value.trim(),lat:$('stationLat').value.trim(),lng:$('stationLng').value.trim(),note:$('stationNote').value.trim(),updated:Date.now()};const i=stations.findIndex(x=>x.id===id);if(i>=0)stations[i]=item;else stations.unshift(item);save();closeModal('editOverlay');toast('تم حفظ المحطة في النسخة التجريبية.');};
+function showAllStationsOnMap(){
+ $('mapModalTitle').textContent='خريطة محطات الوقود';
+ $('mapHelp').textContent='تظهر هنا المحطات التي حدّد المدير مواقعها الجغرافية. اضغط على علامة المحطة لعرض اسمها ومعلومات الوقود.';
+ $('confirmLocationBtn').style.display='none';
+ $('coordsLabel').textContent='يمكنك تكبير الخريطة والتنقل فيها.';
+ if(mapMarker){mapInstance.removeLayer(mapMarker);mapMarker=null;}
+ stationMapMarkers.forEach(m=>mapInstance.removeLayer(m));stationMapMarkers=[];
+ const located=stations.filter(s=>s.lat!==''&&s.lng!==''&&Number.isFinite(Number(s.lat))&&Number.isFinite(Number(s.lng)));
+ if(!located.length){mapInstance.setView([33.5138,36.2765],7);$('coordsLabel').textContent='لم تُحدَّد مواقع للمحطات بعد. افتح إدارة المحطات، ثم تعديل كل محطة واضغط «تحديد الموقع» واحفظها.';return;}
+ const bounds=[];
+ located.forEach(s=>{const lat=Number(s.lat),lng=Number(s.lng);bounds.push([lat,lng]);const marker=L.marker([lat,lng]).addTo(mapInstance);marker.bindPopup(`<div dir="rtl" style="min-width:180px"><b>${esc(s.name)}</b><br>${esc(s.province)} — ${esc(s.area)}<hr style="border:0;border-top:1px solid #ddd"><b>البنزين:</b> ${statusText(s.benzine)}<br><b>المازوت:</b> ${statusText(s.diesel)}<br><button onclick="showDetails('${s.id}')" style="margin-top:8px;padding:7px 10px;background:#075c45;color:white;border-radius:8px">تفاصيل المحطة</button></div>`);stationMapMarkers.push(marker);});
+ if(bounds.length===1)mapInstance.setView(bounds[0],14);else mapInstance.fitBounds(bounds,{padding:[30,30],maxZoom:13});
+}
+$('mapBtn').onclick=$('navMap').onclick=()=>{mapMode='all';pendingCoords=null;openPicker('all',null);};$('navInfo').onclick=()=>toast('وين الوقود؟ — دليلك لمعرفة أين يتوفر الوقود.');
+document.querySelectorAll('.bottom-nav button[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.bottom-nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(b.dataset.view==='stations')$('searchInput').focus();});
+window.showDetails=showDetails;window.directions=directions;window.adminEditStation=adminEditStation;window.removeStation=removeStation;window.openOwnersAdmin=openOwnersAdmin;window.newOwner=newOwner;window.editOwner=editOwner;window.toggleOwner=toggleOwner;window.resetOwnerPassword=resetOwnerPassword;
+render();
+</script>
+</body>
+</html>
