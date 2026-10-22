@@ -301,7 +301,7 @@ async function toggleOwner(uid){
 }
 function resetOwnerPassword(){toast('يمكن لصاحب الحساب استخدام خيار نسيت كلمة المرور في Firebase عند إضافته لاحقاً.');}
 function adminEditStation(id){
- if(currentRole!=='admin'){toast('يجب تسجيل الدخول كمدير أولاً.');return;}
+ if(currentRole!=='admin' && !(currentRole==='owner' && currentStationId===id)){toast('ليس لديك صلاحية تعديل هذه المحطة.');return;}
  closeModal('adminOverlay');
  editStation(id);
 }
