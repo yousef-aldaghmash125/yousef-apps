@@ -192,6 +192,10 @@ body{display:flex;justify-content:center}
     <span class="tool-icon" aria-hidden="true">🛡️</span>
     أذكار عامة وأدعية
   </button>
+  <button class="tool-card" id="open-my-adhkar" type="button">
+    <span class="tool-icon" aria-hidden="true">📝</span>
+    أذكاري الخاصة
+  </button>
   <button class="tool-card" id="open-quran-duas" type="button">
     <span class="tool-icon" aria-hidden="true">🤲</span>
     أدعية من القرآن والسنة
@@ -240,6 +244,38 @@ body{display:flex;justify-content:center}
     <span class="tool-icon" aria-hidden="true">🤲</span>
     الدعاء للمرحوم
   </button>
+</section>
+
+<section id="my-adhkar-view" aria-label="أذكاري الخاصة" style="display:none;padding:16px;background:linear-gradient(135deg,#edf7ed 0%,#f8f5e8 52%,#edf4fb 100%);min-height:70vh">
+  <div class="quran-reader-bar"><div class="quran-reader-title">📝 أذكاري الخاصة</div></div>
+  <button class="quran-back" id="my-adhkar-back" type="button" style="margin:8px 0 18px">→ رجوع إلى المفكرة</button>
+  <p style="text-align:center;font-weight:700;line-height:1.9;color:#244b35">اجمع أذكارك وأدعيتك الخاصة ورتبها في مجموعات ليسهل عليك الرجوع إليها.</p>
+  <div id="my-adhkar-list-page">
+    <button id="my-adhkar-open-form" type="button" style="width:100%;padding:15px;border:0;border-radius:12px;background:#17613f;color:#fff;font:800 17px Tahoma;box-shadow:0 3px 8px #0002">＋ إضافة ذكر</button>
+    <h3 style="color:#244b35;margin:20px 0 10px">أذكاري المحفوظة</h3>
+    <div id="my-adhkar-categories" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px"></div>
+    <div id="my-adhkar-list" style="display:grid;gap:12px"></div>
+  </div>
+  <div id="my-adhkar-form-page" style="display:none">
+    <button id="my-adhkar-form-back" class="quran-back" type="button" style="margin:5px 0 14px">→ رجوع إلى أذكاري</button>
+    <div style="display:grid;gap:12px;background:#fff;padding:15px;border:1px solid #b8cdbb;border-radius:12px">
+      <h3 style="margin:0;color:#07583b">إضافة ذكر جديد</h3>
+      <label style="font-weight:800;color:#173b2a">نوع الذكر
+        <select id="my-adhkar-category" style="display:block;width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border:1px solid #9ab7a2;border-radius:10px;background:#fff;font:16px Tahoma">
+          <option value="أذكار يوم الجمعة">أذكار خاصة بيوم الجمعة</option><option value="أذكار للرزق">أذكار للرزق</option><option value="أذكار لتحصين النفس">أذكار لتحصين النفس</option><option value="أذكار لإزالة الهم">أذكار لإزالة الهم</option><option value="أذكار لإزالة الكرب">أذكار لإزالة الكرب</option><option value="أذكار أخرى">أذكار أخرى</option>
+        </select>
+      </label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button id="my-adhkar-add-category" type="button" style="padding:10px 6px;border:1px dashed #17613f;border-radius:10px;background:#f0f8f0;color:#07583b;font:700 14px Tahoma">＋ إضافة نوع ذكر جديد</button>
+        <button id="my-adhkar-delete-category" type="button" style="padding:10px 6px;border:1px solid #b94a48;border-radius:10px;background:#fff1f1;color:#922b2b;font:700 14px Tahoma">🗑 حذف نوع ذكر</button>
+      </div>
+      <label style="font-weight:800;color:#173b2a">اكتب الذكر أو الدعاء
+        <textarea id="my-adhkar-input" rows="5" maxlength="1500" placeholder="اكتب ذكرك هنا..." style="display:block;width:100%;box-sizing:border-box;padding:12px;margin-top:7px;border:1px solid #9ab7a2;border-radius:10px;font:18px Tahoma;line-height:1.9;resize:vertical"></textarea>
+      </label>
+      <button id="my-adhkar-add" type="button" style="padding:13px;border:0;border-radius:12px;background:#17613f;color:#fff;font:800 16px Tahoma">💾 حفظ الذكر</button>
+      <div id="my-adhkar-status" role="status" style="text-align:center;color:#a33;font-size:14px"></div>
+    </div>
+  </div>
 </section>
 <div class="sadaqa-share-wrap" id="sadaqa-share-wrap">
   <button class="sadaqa-share-btn" id="sadaqa-share-btn" type="button" aria-label="مشاركة تطبيق مفكرة المسلم">
@@ -335,7 +371,7 @@ body{display:flex;justify-content:center}
   <button class="quran-back" id="age-back" type="button" style="margin:8px 0 18px">→ رجوع إلى المفكرة</button>
   <p style="text-align:center;font-weight:700;line-height:1.9;color:#244b35">أدخل تاريخ ميلادك لمعرفة عمرك بالسنوات والأشهر والأيام، مع حساب موعد عيد ميلادك القادم.</p>
   <div style="display:grid;gap:12px;margin-top:14px">
-    <label style="font-weight:800;color:#173b2a">تاريخ الميلاد <input id="age-birth-date" type="date" autocomplete="bday" style="display:block;width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #9ab7a2;border-radius:10px;font:16px Tahoma;background:#fff"></label>
+    <label style="font-weight:800;color:#173b2a">تاريخ الميلاد (يوم-شهر-سنة) <input id="age-birth-date" type="text" inputmode="numeric" autocomplete="bday" placeholder="مثال: 15-08-1995" maxlength="10" dir="ltr" style="display:block;width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #9ab7a2;border-radius:10px;font:18px Tahoma;background:#fff;text-align:center"></label><small style="color:#52665a;text-align:center">اكتب التاريخ بهذا الترتيب: اليوم- الشهر- السنة</small>
     <button id="age-calculate" type="button" style="padding:14px;border:2px solid #174d32;border-radius:12px;background:#dff2df;color:#173b2a;font:800 18px Tahoma;cursor:pointer">احسب عمري</button>
     <div id="age-result" role="status" aria-live="polite" style="display:none;background:#fff;border:2px solid #b38a28;border-radius:12px;padding:15px;line-height:2;color:#222;font-weight:700"></div>
   </div>
@@ -624,9 +660,19 @@ body{display:flex;justify-content:center}
 <script>
 (function(){
  const now=new Date();
- const fmt={weekday:'long',year:'numeric',month:'long',day:'numeric'};
- document.getElementById('gregorian-date').textContent='التاريخ الميلادي: '+new Intl.DateTimeFormat('ar',fmt).format(now);
- function showHijri(){try{document.getElementById('hijri-date').textContent='التاريخ الهجري: '+new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',fmt).format(new Date());}catch(e){document.getElementById('hijri-date').textContent='التاريخ الهجري';}}
+ // نبني تاريخ اليوم المحلي عند الظهر لتجنب انزياح اليوم داخل WebView.
+ const stableDate=new Date(now.getFullYear(),now.getMonth(),now.getDate(),12,0,0);
+ const fmt={weekday:'long',year:'numeric',month:'long',day:'numeric',timeZone:'UTC'};
+ const weekdayText=new Intl.DateTimeFormat('ar',{weekday:'long',timeZone:'UTC'}).format(stableDate);
+ document.getElementById('gregorian-date').textContent='التاريخ الميلادي: '+new Intl.DateTimeFormat('ar',fmt).format(stableDate);
+ function showHijri(){
+   try{
+     // تصحيح فرق اليوم الذي ظهر في تقويم أم القرى على WebView المستخدم.
+     const hijriDate=stableDate;
+     const hijriParts=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'}).format(hijriDate);
+     document.getElementById('hijri-date').textContent='التاريخ الهجري: '+weekdayText+'، '+hijriParts;
+   }catch(e){document.getElementById('hijri-date').textContent='التاريخ الهجري: تعذّر تحديده';}
+ }
  showHijri();
  const keys=['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'];
  function formatPrayerTime(value){const m=String(value||'').match(/(\d{1,2}):(\d{2})/);if(!m)return '--:--';const rawHour=Number(m[1]);const period=rawHour>=12?'م':'ص';const hour=rawHour%12||12;const digits=n=>new Intl.NumberFormat('ar').format(n);const time=digits(hour)+':'+m[2];return '<span dir="ltr" style="display:inline-flex;flex-direction:row;align-items:center;gap:4px;direction:ltr;unicode-bidi:isolate;white-space:nowrap"><span>'+period+'</span><span>'+time+'</span></span>'; }
@@ -659,7 +705,7 @@ body{display:flex;justify-content:center}
  country.addEventListener('change',fillRegions);region.addEventListener('change',fillCities);fillRegions();
  function toDate(time){const m=String(time).match(/(\d{1,2}):(\d{2})/);if(!m)return null;const d=new Date();d.setHours(+m[1],+m[2],0,0);return d;}
  function startCountdown(){if(timer)clearInterval(timer);function tick(){const now=new Date();let next=prayerMoments.find(p=>p.date>now);if(!next){document.getElementById('next-label').textContent='الصلاة التالية: الفجر';const fajr=prayerMoments[0];if(!fajr)return;next={name:'الفجر',date:new Date(fajr.date.getTime()+86400000)};}else{document.getElementById('next-label').textContent='الوقت المتبقي لصلاة '+next.name;}let diff=Math.max(0,Math.floor((next.date-now)/1000));const h=String(Math.floor(diff/3600)).padStart(2,'0'),m=String(Math.floor(diff%3600/60)).padStart(2,'0'),sec=String(diff%60).padStart(2,'0');document.getElementById('countdown').textContent=h+':'+m+':'+sec;}tick();timer=setInterval(tick,1000);}
- async function loadPrayerData(url, label){status.textContent='جارٍ جلب أوقات الصلاة...';try{const res=await fetch(url);if(!res.ok)throw new Error('fetch');const json=await res.json();if(json.code!==200||!json.data||!json.data.timings)throw new Error('api');const data=json.data;keys.forEach(k=>{document.getElementById(k).innerHTML=formatPrayerTime(data.timings[k]);});if(data.date&&data.date.hijri){document.getElementById('hijri-date').textContent='التاريخ الهجري: '+(data.date.hijri.weekday?.ar||'')+'، '+data.date.hijri.day+' '+data.date.hijri.month.ar+' '+data.date.hijri.year+' هـ';}prayerMoments=keys.filter(k=>k!=='Sunrise').map(k=>({name:({'Fajr':'الفجر','Dhuhr':'الظهر','Asr':'العصر','Maghrib':'المغرب','Isha':'العشاء'})[k],date:toDate(data.timings[k])})).filter(p=>p.date).sort((a,b)=>a.date-b.date);startCountdown();status.textContent='تم عرض أوقات الصلاة '+label+'. قد تحتاج إلى اتصال بالإنترنت لتحديثها.';try{localStorage.setItem('mufakkira-prayer-cache',JSON.stringify({timings:data.timings,hijri:data.date?.hijri||null,at:Date.now(),label}));}catch(e){} return true;}catch(e){status.textContent='تعذر تحميل الأوقات الآن. تحقق من اختيار مدينة صحيحة والإنترنت ثم حاول مجددًا.';return false;}}
+ async function loadPrayerData(url, label){status.textContent='جارٍ جلب أوقات الصلاة...';try{const res=await fetch(url);if(!res.ok)throw new Error('fetch');const json=await res.json();if(json.code!==200||!json.data||!json.data.timings)throw new Error('api');const data=json.data;keys.forEach(k=>{document.getElementById(k).innerHTML=formatPrayerTime(data.timings[k]);});prayerMoments=keys.filter(k=>k!=='Sunrise').map(k=>({name:({'Fajr':'الفجر','Dhuhr':'الظهر','Asr':'العصر','Maghrib':'المغرب','Isha':'العشاء'})[k],date:toDate(data.timings[k])})).filter(p=>p.date).sort((a,b)=>a.date-b.date);startCountdown();status.textContent='تم عرض أوقات الصلاة '+label+'. قد تحتاج إلى اتصال بالإنترنت لتحديثها.';try{localStorage.setItem('mufakkira-prayer-cache',JSON.stringify({timings:data.timings,hijri:data.date?.hijri||null,at:Date.now(),label}));}catch(e){} return true;}catch(e){status.textContent='تعذر تحميل الأوقات الآن. تحقق من اختيار مدينة صحيحة والإنترنت ثم حاول مجددًا.';return false;}}
  async function loadForPosition(pos){const lat=pos.coords.latitude,lon=pos.coords.longitude;const date=new Date();const url='https://api.aladhan.com/v1/timings/'+date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear()+'?latitude='+encodeURIComponent(lat)+'&longitude='+encodeURIComponent(lon)+'&method=5';await loadPrayerData(url,'بحسب موقع الهاتف');}
  function locate(){if(!navigator.geolocation){status.textContent='هذا المتصفح لا يتيح تحديد الموقع. جرّب فتح التطبيق من رابط HTTPS أو اختر المدينة يدويًا.';return;}status.textContent='جارٍ تحديد موقع الهاتف… وافق على طلب إذن الموقع إذا ظهر.';navigator.geolocation.getCurrentPosition(pos=>{status.textContent='تم تحديد الموقع، جارٍ جلب أوقات الصلاة…';loadForPosition(pos);},err=>{let msg='';if(err.code===1)msg='لم تسمح للتطبيق بالوصول إلى الموقع.';else if(err.code===2)msg='تعذّر الحصول على موقع الهاتف. تأكد من تشغيل خدمة الموقع.';else if(err.code===3)msg='استغرق تحديد الموقع وقتًا طويلًا.';status.textContent=msg+' يمكنك المحاولة مجددًا أو اختيار المدينة يدويًا من الخانات الظاهرة.';},{enableHighAccuracy:true,timeout:20000,maximumAge:0});}
  const cityApiNames={'دمشق':'Damascus','جرمانا':'Jaramana','دوما':'Douma','داريا':'Darayya','قدسيا':'Qudsaya','التل':'Al-Tall','الزبداني':'Al-Zabadani','يبرود':'Yabroud','النبك':'An-Nabk','قطنا':'Qatana','صحنايا':'Sahnaya','حلب':'Aleppo','منبج':'Manbij','الباب':'Al-Bab','عفرين':'Afrin','أعزاز':'Azaz','حمص':'Homs','تدمر':'Palmyra','الرستن':'Al-Rastan','تلبيسة':'Talbiseh','حماة':'Hama','السلمية':'Salamiyah','مصياف':'Masyaf','محردة':'Mhardeh','اللاذقية':'Latakia','جبلة':'Jableh','القرداحة':'Qardaha','طرطوس':'Tartus','بانياس':'Baniyas','صافيتا':'Safita','إدلب':'Idlib','معرة النعمان':'Maarrat al-Numan','جسر الشغور':'Jisr al-Shughur','درعا':'Daraa','نوى':'Nawa','السويداء':'As-Suwayda','دير الزور':'Deir ez-Zor','الميادين':'Al-Mayadin','البوكمال':'Al-Bukamal','الرقة':'Raqqa','تل أبيض':'Tell Abyad','الحسكة':'Al-Hasakah','القامشلي':'Qamishli','رأس العين':'Ras al-Ayn','المالكية':'Al-Malikiyah','الرياض':'Riyadh','مكة المكرمة':'Mecca','جدة':'Jeddah','الطائف':'Taif','المدينة المنورة':'Medina','الدمام':'Dammam','الخبر':'Khobar','أبها':'Abha','تبوك':'Tabuk','بريدة':'Buraidah','عمّان':'Amman','إربد':'Irbid','الزرقاء':'Zarqa','العقبة':'Aqaba','القاهرة':'Cairo','الإسكندرية':'Alexandria','الجيزة':'Giza','إسطنبول':'Istanbul','أنقرة':'Ankara','إزمير':'Izmir','أبوظبي':'Abu Dhabi','دبي':'Dubai','الشارقة':'Sharjah','بغداد':'Baghdad','البصرة':'Basra','الموصل':'Mosul','بيروت':'Beirut','طرابلس':'Tripoli','القدس':'Jerusalem','غزة':'Gaza','رام الله':'Ramallah','الخليل':'Hebron','نابلس':'Nablus','الكويت':'Kuwait City','الدوحة':'Doha'};
@@ -681,7 +727,7 @@ body{display:flex;justify-content:center}
  };
  async function loadManual(){const c=city.value.trim();if(!c){status.textContent='اختر المدينة أولًا.';city.focus();return;}const d=new Date();const date=d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear();const selectedCountry=country.value==='Other'?'':country.value;const apiCity=cityApiNames[c]||c;const cityUrl='https://api.aladhan.com/v1/timingsByCity/'+date+'?city='+encodeURIComponent(apiCity)+'&country='+encodeURIComponent(selectedCountry)+'&method=5';let ok=false;if(cityCoordinates[c]){const p=cityCoordinates[c];const coordUrl='https://api.aladhan.com/v1/timings/'+date+'?latitude='+p.lat+'&longitude='+p.lon+'&method=5';ok=await loadPrayerData(coordUrl,'لمدينة '+c+' بحسب إحداثياتها');}else{ok=await loadPrayerData(cityUrl,'لمدينة '+c+(selectedCountry?'، '+selectedCountry:''));}if(ok){const panel=document.getElementById('prayer-location-options');panel.hidden=true;const btn=document.getElementById('locate-btn');if(btn)btn.textContent='تغيير موقع الصلاة';document.getElementById('prayer-panel')?.scrollIntoView({behavior:'smooth',block:'start'});}}
  document.getElementById('locate-btn').addEventListener('click',()=>{const panel=document.getElementById('prayer-location-options');panel.hidden=false;locate();});document.getElementById('manual-prayer-btn').addEventListener('click',loadManual);
- try{const cached=JSON.parse(localStorage.getItem('mufakkira-prayer-cache')||'null');if(cached&&Date.now()-cached.at<36*60*60*1000){keys.forEach(k=>{if(cached.timings[k])document.getElementById(k).innerHTML=formatPrayerTime(cached.timings[k]);});if(cached.hijri)document.getElementById('hijri-date').textContent='التاريخ الهجري: '+(cached.hijri.weekday?.ar||'')+'، '+cached.hijri.day+' '+cached.hijri.month.ar+' '+cached.hijri.year+' هـ';prayerMoments=keys.filter(k=>k!=='Sunrise').map(k=>({name:({'Fajr':'الفجر','Dhuhr':'الظهر','Asr':'العصر','Maghrib':'المغرب','Isha':'العشاء'})[k],date:toDate(cached.timings[k])})).filter(p=>p.date).sort((a,b)=>a.date-b.date);if(prayerMoments.length)startCountdown();status.textContent='عُرضت آخر أوقات محفوظة مؤقتًا. حدّثها لتأكيد أوقات اليوم.';}}catch(e){}
+ try{const cached=JSON.parse(localStorage.getItem('mufakkira-prayer-cache')||'null');if(cached&&Date.now()-cached.at<36*60*60*1000){keys.forEach(k=>{if(cached.timings[k])document.getElementById(k).innerHTML=formatPrayerTime(cached.timings[k]);});prayerMoments=keys.filter(k=>k!=='Sunrise').map(k=>({name:({'Fajr':'الفجر','Dhuhr':'الظهر','Asr':'العصر','Maghrib':'المغرب','Isha':'العشاء'})[k],date:toDate(cached.timings[k])})).filter(p=>p.date).sort((a,b)=>a.date-b.date);if(prayerMoments.length)startCountdown();status.textContent='عُرضت آخر أوقات محفوظة مؤقتًا. حدّثها لتأكيد أوقات اليوم.';}}catch(e){}
  // لا نطلب الموقع تلقائيًا عند فتح التطبيق؛ يظهر اختيار الموقع بعد ضغط المستخدم على الزر.
 })();
 </script>
@@ -1060,11 +1106,14 @@ body{display:flex;justify-content:center}
   document.getElementById('age-calculate').addEventListener('click',()=>{
     const input=document.getElementById('age-birth-date'), result=document.getElementById('age-result');
     result.style.display='block';
-    if(!input.value){result.textContent='يرجى إدخال تاريخ الميلاد أولًا.';return;}
-    const parts=input.value.split('-').map(Number);
-    const birth=new Date(parts[0],parts[1]-1,parts[2]);
+    if(!input.value.trim()){result.textContent='يرجى كتابة تاريخ الميلاد أولًا.';return;}
+    const normalized=input.value.trim().replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+    const match=normalized.match(/^(\d{1,2})\s*[\/.-]\s*(\d{1,2})\s*[\/.-]\s*(\d{4})$/);
+    if(!match){result.textContent='اكتب تاريخ الميلاد بهذا الترتيب: اليوم- الشهر- السنة، مثل 15-08-1995.';return;}
+    const day=Number(match[1]),month=Number(match[2]),year=Number(match[3]);
+    const birth=new Date(year,month-1,day);
     const today=new Date();today.setHours(0,0,0,0);
-    if(birth.getFullYear()!==parts[0]||birth.getMonth()!==parts[1]-1||birth.getDate()!==parts[2]||birth>today){result.textContent='يرجى إدخال تاريخ ميلاد صحيح لا يقع في المستقبل.';return;}
+    if(year<1||birth.getFullYear()!==year||birth.getMonth()!==month-1||birth.getDate()!==day||birth>today){result.textContent='يرجى إدخال تاريخ ميلاد صحيح لا يقع في المستقبل.';return;}
     let years=today.getFullYear()-birth.getFullYear();
     let months=today.getMonth()-birth.getMonth();
     let days=today.getDate()-birth.getDate();
@@ -1652,32 +1701,18 @@ body{display:flex;justify-content:center}
     if(!modal){
       modal=document.createElement('div'); modal.id='sadaqa-share-menu';
       modal.style.cssText='position:fixed;inset:0;z-index:100010;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.58);direction:rtl;box-sizing:border-box';
-      modal.innerHTML=`<div role="dialog" aria-modal="true" aria-labelledby="sadaqa-share-title" style="width:min(100%,360px);background:#fffdf5;border:2px solid #c5a044;border-radius:20px;padding:18px;box-shadow:0 12px 35px #0005;font-family:inherit;color:#214735;box-sizing:border-box">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:27px">🌿</span><strong id="sadaqa-share-title" style="font-size:19px;flex:1">شارك مفكرة المسلم</strong><button type="button" id="sadaqa-share-close" aria-label="إغلاق" style="border:0;background:#e8eee5;color:#214735;border-radius:10px;padding:7px 11px;font-size:18px">✕</button></div>
-        <p style="margin:0 0 14px;line-height:1.8;font-size:14px">اختر التطبيق الذي تريد مشاركة مفكرة المسلم من خلاله:</p>
-        <div style="display:grid;gap:9px">
-          <button type="button" data-share="facebook" style="border:0;border-radius:12px;padding:12px;background:#1877f2;color:white;font:700 16px inherit;cursor:pointer">📘 فيسبوك</button>
-          <button type="button" data-share="whatsapp" style="border:0;border-radius:12px;padding:12px;background:#168b52;color:white;font:700 16px inherit;cursor:pointer">🟢 واتساب</button>
-          <button type="button" data-share="messenger" style="border:0;border-radius:12px;padding:12px;background:#087cff;color:white;font:700 16px inherit;cursor:pointer">💬 ماسنجر</button>
-          <button type="button" data-share="telegram" style="border:0;border-radius:12px;padding:12px;background:#229ed9;color:white;font:700 16px inherit;cursor:pointer">✈️ تلغرام</button>
-        </div>
-        <p style="margin:12px 0 0;font-size:12px;line-height:1.7;color:#52645a">سيتم مشاركة رابط النسخة المستضافة من التطبيق.</p>
+      modal.innerHTML=`<div role="dialog" aria-modal="true" aria-labelledby="sadaqa-share-title" style="width:min(100%,360px);background:#fffdf5;border:2px solid #c5a044;border-radius:20px;padding:20px;box-shadow:0 12px 35px #0005;font-family:inherit;color:#214735;box-sizing:border-box;text-align:center">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:27px">🌿</span><strong id="sadaqa-share-title" style="font-size:19px;flex:1">صدقة جارية</strong><button type="button" id="sadaqa-share-close" aria-label="إغلاق" style="border:0;background:#e8eee5;color:#214735;border-radius:10px;padding:7px 11px;font-size:18px">✕</button></div>
+        <p style="margin:8px 0 18px;line-height:2;font-size:16px;font-weight:700">ساهم في نشر الخير وعرف غيرك بهذا التطبيق فلعل أحدا ينتفع به ويكون لك أجر الدلالة على الخير</p>
+        <button type="button" data-share="apps-site" style="width:100%;border:2px solid #c5a044;border-radius:12px;padding:13px;background:#f0f5e9;color:#07583b;font:700 16px inherit;cursor:pointer">🌐 موقع تطبيقاتي</button>
       </div>`;
       document.body.appendChild(modal);
       modal.addEventListener('click',async ev=>{
         if(ev.target===modal || ev.target.id==='sadaqa-share-close'){modal.style.display='none';return;}
         const choice=ev.target.closest('[data-share]'); if(!choice)return;
-        const url=location.href; const message='شارك تطبيق مفكرة المسلم؛ لعلّه يكون صدقة جارية وأجرًا نافعًا.';
-        const safeUrl=encodeURIComponent(url); const safeText=encodeURIComponent(message+' '+url);
-        if(choice.dataset.share==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+safeUrl,'_blank','noopener');
-        if(choice.dataset.share==='whatsapp') window.open('https://api.whatsapp.com/send?text='+safeText,'_blank','noopener');
-        if(choice.dataset.share==='telegram') window.open('https://t.me/share/url?url='+safeUrl+'&text='+encodeURIComponent(message),'_blank','noopener');
-        if(choice.dataset.share==='messenger'){
-          try{if(navigator.clipboard && location.protocol!=='file:') await navigator.clipboard.writeText(message+' '+url);}catch(_){ }
-          window.open('https://www.messenger.com/','_blank','noopener');
-          alert('تم نسخ نص المشاركة إن كان النسخ متاحًا. افتح محادثة ماسنجر والصق الرابط لإرساله.');
-        }
-        modal.style.display='none';
+        if(choice.dataset.share==='apps-site'){modal.style.display='none';window.location.href='https://yousef-aldaghmash125.github.io/yousef-apps/';return;}
+        if(choice.dataset.share==='apps-site'){modal.style.display='none';window.location.href='https://yousef-aldaghmash125.github.io/yousef-apps/';}
+
       });
       document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&modal.style.display!=='none')modal.style.display='none';});
     }
@@ -1687,6 +1722,65 @@ body{display:flex;justify-content:center}
 })();
 </script>
 
+
+<script>
+(()=>{
+ const btn=document.getElementById('open-my-adhkar'),view=document.getElementById('my-adhkar-view'),back=document.getElementById('my-adhkar-back');
+ if(!btn||!view||!back)return;
+ const grid=document.getElementById('tools-grid'),prayer=document.querySelector('.prayer-panel');
+ const input=document.getElementById('my-adhkar-input'),list=document.getElementById('my-adhkar-list'),status=document.getElementById('my-adhkar-status');
+ const listPage=document.getElementById('my-adhkar-list-page'),formPage=document.getElementById('my-adhkar-form-page'),categories=document.getElementById('my-adhkar-categories');
+ const KEY='mufakkirat_my_custom_adhkar_v1';
+ const CAT_KEY='mufakkirat_my_adhkar_categories_v1';
+ const defaultCategories=['أذكار يوم الجمعة','أذكار للرزق','أذكار لتحصين النفس','أذكار لإزالة الهم','أذكار لإزالة الكرب','أذكار أخرى'];
+ let customCategories=[];try{customCategories=JSON.parse(localStorage.getItem(CAT_KEY)||'[]');if(!Array.isArray(customCategories))customCategories=[];}catch(e){customCategories=[];}
+ let categoryNames=[...new Set([...defaultCategories,...customCategories])];
+ const categorySelect=document.getElementById('my-adhkar-category');
+ function refreshCategorySelect(selected){categorySelect.replaceChildren();categoryNames.forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;categorySelect.append(o);});if(selected&&categoryNames.includes(selected))categorySelect.value=selected;}
+ let items=[],activeCategory='الكل';
+ try{items=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(items))items=[];}catch(e){items=[];}
+ items=items.map(x=>({...x,category:x.category||'أذكار أخرى'}));
+ items.forEach(x=>{if(!categoryNames.includes(x.category))categoryNames.push(x.category);});
+ refreshCategorySelect();
+ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items));return true;}catch(e){status.textContent='تعذّر الحفظ على هذا الجهاز.';return false;}};
+ function render(){
+  categories.replaceChildren();
+  const counts={};items.forEach(x=>counts[x.category]=(counts[x.category]||0)+1);
+  [['الكل',items.length],...categoryNames.map(c=>[c,counts[c]||0])].forEach(([name,count])=>{const b=document.createElement('button');b.type='button';b.textContent=name+' ('+count+')';b.style.cssText='padding:10px 6px;border:1px solid #9ab7a2;border-radius:10px;background:'+(activeCategory===name?'#dcefe0':'#fff')+';color:#07583b;font:700 13px Tahoma';b.addEventListener('click',()=>{activeCategory=name;render();});categories.append(b);});
+  list.replaceChildren();const shown=items.filter(x=>activeCategory==='الكل'||x.category===activeCategory);
+  if(!shown.length){const empty=document.createElement('p');empty.textContent=items.length?'لا توجد أذكار في هذا التصنيف بعد.':'لم تضف أذكارًا بعد. اضغط «إضافة ذكر» للبدء.';empty.style.cssText='text-align:center;color:#657568;background:#fff;border-radius:12px;padding:20px;line-height:1.9';list.append(empty);return;}
+  shown.forEach(item=>{const card=document.createElement('article');card.style.cssText='background:#fff;border:1px solid #b8cdbb;border-radius:12px;padding:14px;display:grid;gap:10px;box-shadow:0 2px 7px #00000008';const tag=document.createElement('span');tag.textContent=item.category;tag.style.cssText='justify-self:start;background:#e4f2e5;color:#07583b;padding:4px 10px;border-radius:20px;font:700 12px Tahoma';const text=document.createElement('div');text.textContent=item.text;text.style.cssText='white-space:pre-wrap;line-height:2;font:18px Tahoma;color:#243b2c;text-align:right';const del=document.createElement('button');del.type='button';del.textContent='حذف الذكر';del.style.cssText='justify-self:start;padding:8px 14px;border:1px solid #a44;border-radius:9px;background:#fff1f1;color:#8a2424;font:700 14px Tahoma';del.addEventListener('click',()=>{if(!confirm('هل تريد حذف هذا الذكر؟'))return;items=items.filter(x=>x.id!==item.id);save();render();});card.append(tag,text,del);list.append(card);});
+ }
+ function showList(){listPage.style.display='block';formPage.style.display='none';render();window.scrollTo({top:0,behavior:'smooth'});}
+ let adhkarStage='closed';
+ function showForm(push=true){if(push)history.pushState({mufakkiratMyAdhkar:'form'},'','#my-adhkar-form');adhkarStage='form';listPage.style.display='none';formPage.style.display='block';status.textContent='';window.scrollTo({top:0,behavior:'smooth'});}
+ function showList(){adhkarStage='list';listPage.style.display='block';formPage.style.display='none';render();window.scrollTo({top:0,behavior:'smooth'});}
+ function open(){history.pushState({mufakkiratMyAdhkar:'list'},'','#my-adhkar');adhkarStage='list';if(prayer)prayer.style.display='none';if(grid)grid.style.display='none';document.querySelectorAll('#quran-view,#tasbeeh-view,#adhkar-view,#general-adhkar-view,#quran-duas-view,#occasions-view,#zakat-view,#inheritance-view,#age-view,#charity-view,#books-view,#favorites-view,#memorial-dua-view,#khatib-memo-view').forEach(el=>el.style.display='none');view.style.display='block';showList();}
+ function close(){adhkarStage='closed';view.style.display='none';formPage.style.display='none';listPage.style.display='block';if(grid)grid.style.display='grid';if(prayer)prayer.style.removeProperty('display');window.scrollTo({top:0,behavior:'smooth'});}
+ document.getElementById('my-adhkar-open-form').addEventListener('click',()=>{refreshCategorySelect();showForm(true);});
+ document.getElementById('my-adhkar-add-category').addEventListener('click',()=>{const name=prompt('اكتب اسم نوع الذكر الجديد:');if(name===null)return;const clean=name.trim();if(!clean){alert('اكتب اسمًا لنوع الذكر.');return;}if(categoryNames.some(x=>x.toLocaleLowerCase()===clean.toLocaleLowerCase())){alert('هذا النوع موجود بالفعل.');refreshCategorySelect(clean);return;}categoryNames.push(clean);customCategories.push(clean);try{localStorage.setItem(CAT_KEY,JSON.stringify(customCategories));}catch(e){status.textContent='تعذّر حفظ نوع الذكر على هذا الجهاز.';}refreshCategorySelect(clean);activeCategory='الكل';render();});
+ document.getElementById('my-adhkar-delete-category').addEventListener('click',()=>{
+  if(!customCategories.length){alert('لا توجد أنواع مضافة يدويًا لحذفها.');return;}
+  const chosen=prompt('اكتب اسم النوع الذي تريد حذفه:\n'+customCategories.map((x,i)=>(i+1)+'- '+x).join('\n'));
+  if(chosen===null)return;
+  const raw=chosen.trim();let target=customCategories.find(x=>x===raw);
+  if(!target&&/^\d+$/.test(raw))target=customCategories[Number(raw)-1];
+  if(!target){alert('لم يتم العثور على هذا النوع. اكتب اسمه كما يظهر أو رقمه في القائمة.');return;}
+  if(!confirm('سيتم حذف التصنيف «'+target+'» ونقل أذكاره إلى «أذكار أخرى». هل تريد المتابعة؟'))return;
+  items=items.map(x=>x.category===target?{...x,category:'أذكار أخرى'}:x);
+  customCategories=customCategories.filter(x=>x!==target);
+  categoryNames=categoryNames.filter(x=>x!==target);
+  try{localStorage.setItem(CAT_KEY,JSON.stringify(customCategories));localStorage.setItem(KEY,JSON.stringify(items));}catch(e){alert('تعذّر حفظ التغيير على هذا الجهاز.');return;}
+  activeCategory='الكل';refreshCategorySelect('أذكار أخرى');render();alert('تم حذف النوع ونقل أذكاره إلى «أذكار أخرى».');
+ });
+  document.getElementById('my-adhkar-form-back').addEventListener('click',()=>{if(adhkarStage==='form'&&history.state&&history.state.mufakkiratMyAdhkar==='form')history.back();else showList();});
+ btn.addEventListener('click',open);back.addEventListener('click',()=>{if(adhkarStage!=='closed'&&history.state&&history.state.mufakkiratMyAdhkar)history.back();else close();});
+ window.addEventListener('popstate',()=>{if(adhkarStage==='form'){showList(false);}else if(adhkarStage==='list'){close();}});
+ document.getElementById('my-adhkar-add').addEventListener('click',()=>{const text=input.value.trim();if(!text){status.textContent='اكتب الذكر أولًا.';input.focus();return;}items.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),text,category:document.getElementById('my-adhkar-category').value});if(save()){input.value='';activeCategory='الكل';showList();}});
+ // لا نستخدم سجل المتصفح داخل هذا القسم حتى لا يتعارض الرجوع مع تنقل بقية أقسام المفكرة.
+ render();
+})();
+</script>
 </body>
 </html>
 <section id="days-reader-overlay" aria-label="قراءة الأيام داخل التطبيق" style="display:none;position:fixed;inset:0;z-index:100002;background:#edf7ed;overflow:auto;padding:10px;box-sizing:border-box">
