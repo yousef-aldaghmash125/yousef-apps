@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#145b46">
+<title>حاسبة أحجام الخزانات</title>
+<style>
+:root{--green:#145b46;--green2:#1d765b;--gold:#d9ad55;--bg:#f3f7f4;--ink:#172923;--muted:#66766e;--line:#dce7df;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:var(--ink)}
+.app{max-width:620px;margin:auto;padding:14px 14px 28px}
+.hero{background:linear-gradient(135deg,#104936,#23765b);color:#fff;border-radius:20px;padding:22px 18px;text-align:center;box-shadow:0 8px 22px #164d3820}
+.hero .icon{font-size:38px;margin-bottom:5px}
+.hero h1{font-size:23px;margin:4px 0 7px}
+.hero p{margin:0;color:#e1eee7;font-size:13px;line-height:1.8}
+.version{font-size:11px;color:#d5e8dc;margin-top:8px}
+.section-title{font-size:17px;font-weight:bold;margin:20px 2px 11px}
+.shapes{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.shape{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 5px;min-height:105px;color:var(--ink);font:inherit;cursor:pointer}
+.shape.active{border-color:var(--green2);background:#eaf4ee;box-shadow:inset 0 0 0 1px var(--green2)}
+.shape svg{width:58px;height:42px;display:block;margin:0 auto 7px}
+.shape span{font-size:12px;font-weight:bold}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:16px;margin-top:13px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.panel-head strong{font-size:16px}
+.unit{border:1px solid var(--line);background:#f7faf8;border-radius:10px;padding:8px 10px;font:inherit;font-size:13px;color:var(--ink)}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{min-width:0}
+.field label{display:block;font-size:13px;font-weight:bold;margin:0 0 7px}
+.field input{width:100%;min-width:0;border:1px solid #cbd9d0;border-radius:11px;padding:12px 11px;font:inherit;font-size:16px;outline:none;background:#fff}
+.field input:focus,.unit:focus{border-color:var(--green2);box-shadow:0 0 0 3px #1d765b20}
+.hint{font-size:11px;color:var(--muted);margin-top:5px}
+.primary{width:100%;border:0;border-radius:12px;background:var(--green);color:#fff;font:inherit;font-weight:bold;font-size:16px;padding:14px;margin-top:16px;cursor:pointer}
+.primary:active{background:#0c3e2f}
+.secondary{border:1px solid var(--line);background:#f8faf8;color:var(--ink);border-radius:11px;padding:11px 14px;font:inherit;cursor:pointer}
+.result{display:none;margin-top:14px;background:#edf6ef;border:1px solid #c9dfce;border-radius:15px;padding:16px}
+.result.show{display:block}
+.result-title{font-size:13px;color:#496354}
+.big{font-size:29px;font-weight:bold;color:#12563f;margin:6px 0 2px;overflow-wrap:anywhere}
+.subresult{font-size:14px;color:#365d49}
+.result-note{font-size:11px;color:#60776a;line-height:1.7;margin-top:9px}
+.error{display:none;color:#a32b2b;background:#fff0f0;border:1px solid #f1cccc;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:13px}
+.error.show{display:block}
+.note{font-size:12px;color:var(--muted);line-height:1.9;margin:12px 3px}
+.update-box{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px}
+.update-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.update-row strong{font-size:14px}
+.update-status{font-size:12px;color:var(--muted);line-height:1.8;margin-top:7px}
+.update-btn{background:#eaf3ed;color:var(--green);border:1px solid #cfe0d4;border-radius:10px;padding:9px 12px;font:inherit;font-size:12px;font-weight:bold;white-space:nowrap;cursor:pointer}
+.update-link{display:none;margin-top:10px;text-align:center;background:var(--gold);color:#2b2416;text-decoration:none;padding:12px;border-radius:10px;font-weight:bold;font-size:14px}
+footer{text-align:center;color:#728078;font-size:11px;margin:18px 0 3px;line-height:1.8}
+@media(max-width:380px){.field-grid{grid-template-columns:1fr}.shape span{font-size:11px}.app{padding:10px}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="hero">
+    <div class="icon">📐</div>
+    <h1>حاسبة أحجام الخزانات</h1>
+    <p>احسب السعة الكلية للخزان بسهولة ودقة<br>اختر شكل الخزان وأدخل أبعاده</p>
+    <div class="version">الإصدار 1.0.0</div>
+  </header>
+
+  <div class="section-title">اختر شكل الخزان</div>
+  <section class="shapes" aria-label="أشكال الخزانات">
+    <button class="shape active" type="button" data-shape="rect">
+      <svg viewBox="0 0 90 60" role="img" aria-label="خزان مستطيل"><path d="M13 17 L59 17 L77 8 L31 8 Z" fill="#d7e9df" stroke="#145b46" stroke-width="2"/><path d="M13 17 L13 47 L59 47 L59 17" fill="#b7d8c4" stroke="#145b46" stroke-width="2"/><path d="M59 17 L77 8 L77 38 L59 47" fill="#8dbda1" stroke="#145b46" stroke-width="2"/></svg>
+      <span>مستطيل</span>
+    </button>
+    <button class="shape" type="button" data-shape="horizontal">
+      <svg viewBox="0 0 90 60" role="img" aria-label="خزان أسطواني أفقي"><path d="M17 15 C7 15 7 45 17 45 L68 45 C79 45 79 15 68 15 Z" fill="#b7d8c4" stroke="#145b46" stroke-width="2"/><ellipse cx="17" cy="30" rx="9" ry="15" fill="#d7e9df" stroke="#145b46" stroke-width="2"/><ellipse cx="68" cy="30" rx="9" ry="15" fill="#8dbda1" stroke="#145b46" stroke-width="2"/></svg>
+      <span>أسطواني أفقي</span>
+    </button>
+    <button class="shape" type="button" data-shape="vertical">
+      <svg viewBox="0 0 90 60" role="img" aria-label="خزان أسطواني عمودي"><path d="M25 16 C25 7 65 7 65 16 L65 46 C65 55 25 55 25 46 Z" fill="#b7d8c4" stroke="#145b46" stroke-width="2"/><ellipse cx="45" cy="16" rx="20" ry="8" fill="#d7e9df" stroke="#145b46" stroke-width="2"/><path d="M25 46 C25 35 65 35 65 46" fill="none" stroke="#145b46" stroke-width="2"/></svg>
+      <span>أسطواني عمودي</span>
+    </button>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <strong id="formTitle">أبعاد الخزان المستطيل</strong>
+      <select class="unit" id="unit" aria-label="وحدة القياس">
+        <option value="cm">سنتيمتر</option>
+        <option value="m">متر</option>
+      </select>
+    </div>
+    <form id="calcForm">
+      <div class="field-grid" id="fields">
+        <div class="field"><label for="length">الطول</label><input id="length" type="number" min="0" step="any" inputmode="decimal" placeholder="مثلاً 300" required></div>
+        <div class="field"><label for="width">العرض</label><input id="width" type="number" min="0" step="any" inputmode="decimal" placeholder="مثلاً 200" required></div>
+        <div class="field"><label for="height">الارتفاع</label><input id="height" type="number" min="0" step="any" inputmode="decimal" placeholder="مثلاً 150" required></div>
+      </div>
+      <button class="primary" type="submit">احسب سعة الخزان</button>
+    </form>
+    <div class="error" id="error" role="alert"></div>
+    <div class="result" id="result" aria-live="polite">
+      <div class="result-title">السعة الكلية للخزان</div>
+      <div class="big" id="liters">—</div>
+      <div class="subresult">لتر</div>
+      <div class="subresult" style="margin-top:8px">ما يعادل <strong id="cubic">—</strong> متر مكعب</div>
+      <div class="result-note">هذه هي السعة الهندسية الكلية للخزان عندما يكون فارغاً من الحيز الداخلي غير المستخدم. لا تشمل سماكة جدران الخزان أو أي أجزاء داخلية تشغل حجماً.</div>
+    </div>
+  </section>
+
+  <p class="note">تنبيه: أدخل الأبعاد الداخلية للخزان للحصول على سعة أقرب إلى السعة الفعلية. في الخزان الأسطواني أدخل القطر، أي المسافة من جانب إلى الجانب المقابل مروراً بالمركز.</p>
+
+  <section class="update-box">
+    <div class="update-row">
+      <strong>🔄 تحديث التطبيق</strong>
+      <button type="button" class="update-btn" id="checkUpdate">التحقق من التحديث</button>
+    </div>
+    <div class="update-status" id="updateStatus" aria-live="polite">الإصدار الحالي 1.0.0. يمكنك التحقق من وجود إصدار أحدث عند الاتصال بالإنترنت.</div>
+    <a class="update-link" id="downloadUpdate" href="#" target="_blank" rel="noopener">تحميل الإصدار الجديد</a>
+  </section>
+
+  <footer>حاسبة أحجام الخزانات<br>أداة حسابية — النتائج تقريبية بحسب دقة القياسات المدخلة</footer>
+</main>
+<script>
+(function(){
+  const APP_VERSION = "1.0.0";
+  // سنضع ملف التحكم بالتحديثات في هذا المسار على GitHub Pages.
+  const VERSION_URL = "https://yousef-aldaghmash125.github.io/yousef-apps/tank-version.json";
+  const shapes = document.querySelectorAll(".shape");
+  const formTitle = document.getElementById("formTitle");
+  const fields = document.getElementById("fields");
+  const form = document.getElementById("calcForm");
+  const unit = document.getElementById("unit");
+  const result = document.getElementById("result");
+  const error = document.getElementById("error");
+  let currentShape = "rect";
+
+  const configs = {
+    rect: {
+      title:"أبعاد الخزان المستطيل",
+      fields:[
+        ["length","الطول","مثلاً 300"],
+        ["width","العرض","مثلاً 200"],
+        ["height","الارتفاع","مثلاً 150"]
+      ]
+    },
+    horizontal: {
+      title:"أبعاد الخزان الأسطواني الأفقي",
+      fields:[
+        ["length","طول الخزان","مثلاً 300"],
+        ["diameter","قطر الخزان","مثلاً 150"]
+      ]
+    },
+    vertical: {
+      title:"أبعاد الخزان الأسطواني العمودي",
+      fields:[
+        ["height","ارتفاع الخزان","مثلاً 200"],
+        ["diameter","قطر الخزان","مثلاً 150"]
+      ]
+    }
+  };
+
+  function renderFields(){
+    const c = configs[currentShape];
+    formTitle.textContent = c.title;
+    fields.innerHTML = c.fields.map(([id,label,placeholder]) =>
+      `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="number" min="0" step="any" inputmode="decimal" placeholder="${placeholder}" required></div>`
+    ).join("");
+    result.classList.remove("show");
+    error.classList.remove("show");
+  }
+  shapes.forEach(btn => btn.addEventListener("click",()=>{
+    shapes.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentShape=btn.dataset.shape;
+    renderFields();
+  }));
+
+  function readValue(id){
+    const el=document.getElementById(id);
+    if(!el) return NaN;
+    return Number(el.value);
+  }
+  function toMeters(value){
+    return unit.value==="cm" ? value/100 : value;
+  }
+  function fmt(n, max=2){
+    return new Intl.NumberFormat("ar", {maximumFractionDigits:max}).format(n);
+  }
+
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    error.classList.remove("show");
+    result.classList.remove("show");
+    const c=configs[currentShape];
+    const vals={};
+    for(const [id,label] of c.fields){
+      const raw=readValue(id);
+      if(!Number.isFinite(raw)||raw<=0){
+        error.textContent="يرجى إدخال قيمة صحيحة أكبر من صفر في خانة "+label+".";
+        error.classList.add("show");
+        return;
+      }
+      vals[id]=toMeters(raw);
+    }
+    let cubicMeters=0;
+    if(currentShape==="rect"){
+      cubicMeters=vals.length*vals.width*vals.height;
+    }else{
+      const radius=vals.diameter/2;
+      if(currentShape==="horizontal") cubicMeters=Math.PI*radius*radius*vals.length;
+      else cubicMeters=Math.PI*radius*radius*vals.height;
+    }
+    const liters=cubicMeters*1000;
+    if(!Number.isFinite(liters)||liters<=0){
+      error.textContent="تعذر إجراء الحساب. تحقق من الأبعاد المدخلة.";
+      error.classList.add("show");
+      return;
+    }
+    document.getElementById("liters").textContent=fmt(liters,2);
+    document.getElementById("cubic").textContent=fmt(cubicMeters,4);
+    result.classList.add("show");
+  });
+
+  function compareVersions(a,b){
+    const aa=String(a).split(".").map(x=>parseInt(x,10)||0);
+    const bb=String(b).split(".").map(x=>parseInt(x,10)||0);
+    for(let i=0;i<Math.max(aa.length,bb.length);i++){
+      const x=aa[i]||0,y=bb[i]||0;
+      if(x>y)return 1;if(x<y)return -1;
+    }
+    return 0;
+  }
+  async function checkForUpdate(){
+    const status=document.getElementById("updateStatus");
+    const link=document.getElementById("downloadUpdate");
+    const button=document.getElementById("checkUpdate");
+    button.disabled=true;
+    button.textContent="جارٍ التحقق...";
+    link.style.display="none";
+    status.textContent="يتم الآن التحقق من وجود إصدار جديد...";
+    try{
+      const response=await fetch(VERSION_URL+"?t="+Date.now(),{cache:"no-store"});
+      if(!response.ok) throw new Error("version file unavailable");
+      const data=await response.json();
+      if(!data.version) throw new Error("invalid version data");
+      if(compareVersions(data.version,APP_VERSION)>0){
+        status.textContent="يتوفر إصدار أحدث ("+data.version+"). "+(data.message||"ننصحك بتحديث التطبيق.");
+        if(data.apkUrl){
+          link.href=data.apkUrl;
+          link.style.display="block";
+        }
+      }else{
+        status.textContent="أنت تستخدم أحدث إصدار ("+APP_VERSION+").";
+      }
+    }catch(e){
+      status.textContent="تعذر التحقق الآن. تأكد من اتصال الإنترنت، أو حاول مرة أخرى لاحقاً.";
+    }finally{
+      button.disabled=false;
+      button.textContent="التحقق من التحديث";
+    }
+  }
+  document.getElementById("checkUpdate").addEventListener("click",checkForUpdate);
+  // فحص تلقائي عند فتح التطبيق، مع بقاء الحاسبة متاحة حتى دون إنترنت.
+  if(navigator.onLine) checkForUpdate();
+})();
+</script>
+</body>
+</html>
